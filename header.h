@@ -20,7 +20,6 @@ typedef char* infochar;
 typedef int infotype;
 typedef struct Customer *address;	//node2 di queue
 typedef struct BrgBelian *addressbrg;	//node yg ditunjuk queue sebagai barang belian
-typedef struct ListBarang *addresslist;
 
 //infochar Kasir[3] = {"kasir1", "kasir2","kasir3"};	//array kasir
 typedef struct{
@@ -52,5 +51,33 @@ typedef struct BrgBelian{
 typedef struct {
 	address First;
 }List;
+
+/*Modul */
+void CreateList(List *L);
+//terbentuk list kosong untuk pointer First
+
+void CreateListBelian(addressbrg *L);
+//Alokasi barang belanjaan
+
+boolean IsEmpty(List L);
+/* Mengirim true jika List Kosong */
+
+address Alokasi_Antrian(infochar X)
+/* Mengirimkan address hasil alokasi sebuah elemen */
+/* Jika alokasi berhasil, maka address != Nil, 	   */
+/*	dan misalnya menghasilkan P, maka Info(P) = X, Next(P) = Nil */
+/* Jika alokasi gagal, mengirimkan Nil */
+	
+void Enqueue_Belanja();
+//Membaca file yang berisi barang belanjaan;
+
+void InsertLast(List *L, address P);
+//menginsertkan customer ke queue
+
+void Enqueue(List *L, infochar X);
+/*melakukan alokasi elemen */
+
+void Dequeue(List *L);
+/*menghapus node setelah melakukan transaksi di kasir*/
 
 #endif
