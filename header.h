@@ -80,4 +80,19 @@ void Enqueue(List *L, infochar X);
 void Dequeue(List *L);
 /*menghapus node setelah melakukan transaksi di kasir*/
 
+int ListEmpty(ListBarang Brng);
+/*fungsi untuk memeriksa apakah ada list barang pada file*/
+
+void list_barang();
+//Membaca dan menampilkan file berupa list
+
+void deleteProduct(int b);
+//Menghapus barang yang ada di dalam file//
+
+void AddBarang(int b);
+//Menambah barang di file//
+
+int readProduct();
+//Fungsi membaca isi file dan menampilkannya ke layar//
+
 #endif
