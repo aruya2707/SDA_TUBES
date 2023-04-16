@@ -11,6 +11,7 @@
 
 /***Deklarasi Variabel***/
 typedef struct Customer *address;	//node2 di queue
+typedef struct ListBarang *addresslist;
 
 typedef struct{
 	infotype kasir_1,kasir_2,kasir_3;

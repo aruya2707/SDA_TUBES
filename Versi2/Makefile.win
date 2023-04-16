@@ -4,15 +4,15 @@
 CPP      = g++.exe
 CC       = gcc.exe
 WINDRES  = windres.exe
-OBJ      = main.o BodyCassier.o BodyAntrian.o BodyCassier.o
-LINKOBJ  = main.o BodyCassier.o BodyAntrian.o BodyCassier.o
+OBJ      = main.o BodyAntrian.o BodyCassier.o BodyBarang.o
+LINKOBJ  = main.o BodyAntrian.o BodyCassier.o BodyBarang.o
 LIBS     = -L"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/lib" -L"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/x86_64-w64-mingw32/lib" -static-libgcc
 INCS     = -I"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/include" -I"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/9.2.0/include"
 CXXINCS  = -I"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/include" -I"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/9.2.0/include" -I"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/9.2.0/include/c++"
 BIN      = Versi2.exe
 CXXFLAGS = $(CXXINCS) 
 CFLAGS   = $(INCS) 
-DEL      = C:\Program Files (x86)\Embarcadero\Dev-Cpp\devcpp.exe INTERNAL_DEL
+DEL      = C:\Program Files (x86)\Embarcadero\Dev-Cpp\DevCpp.exe INTERNAL_DEL
 
 .PHONY: all all-before all-after clean clean-custom
 
@@ -27,11 +27,11 @@ $(BIN): $(OBJ)
 main.o: main.cpp
 	$(CPP) -c main.cpp -o main.o $(CXXFLAGS)
 
-BodyCassier.o: BodyCassier.cpp
-	$(CPP) -c BodyCassier.cpp -o BodyCassier.o $(CXXFLAGS)
-
 BodyAntrian.o: BodyAntrian.cpp
 	$(CPP) -c BodyAntrian.cpp -o BodyAntrian.o $(CXXFLAGS)
 
-BodyCassier.o: BodyCassier.c
-	$(CPP) -c BodyCassier.c -o BodyCassier.o $(CXXFLAGS)
+BodyCassier.o: BodyCassier.cpp
+	$(CPP) -c BodyCassier.cpp -o BodyCassier.o $(CXXFLAGS)
+
+BodyBarang.o: BodyBarang.cpp
+	$(CPP) -c BodyBarang.cpp -o BodyBarang.o $(CXXFLAGS)

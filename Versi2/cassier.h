@@ -5,6 +5,7 @@
 #include <conio.h>
 #include <malloc.h>
 #include <limits.h>
+#include <string.h>
 #include "boolean.h"
 
 /***Deklarasi Kamus data***/
@@ -20,7 +21,13 @@ typedef struct ListBarang{
 	infotype StokBrng,HrgBrng;
 }ListBarang;
 
-/***Deklarasi Modul***/
+typedef struct Login_Kasir{
+    char username[50];
+    char password[50];
+} Login_Kasir;
+
+
+/***Deklarasi Modul Barang***/
 int ListEmpty(ListBarang Brng);
 /*fungsi untuk memeriksa apakah ada list barang pada file*/
 int readProduct();
@@ -31,5 +38,9 @@ void deleteProduct(int b);
 //Menghapus barang yang ada di dalam file
 void list_barang();
 //Membaca dan menampilkan file berupa list
+
+
+/***Deklarasi Modul Kasir***/
+int cek_akun(Login_Kasir *akun, int jml_akun, char *username, char *password);
 
 #endif
