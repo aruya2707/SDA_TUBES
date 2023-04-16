@@ -87,12 +87,12 @@ void list_barang();
 //Membaca dan menampilkan file berupa list
 
 void deleteProduct(int b);
-//Menghapus barang yang ada di dalam file//
+//Menghapus barang yang ada di dalam file
 
 void AddBarang(int b);
-//Menambah barang di file//
+//Menambah barang di file
 
 int readProduct();
-//Fungsi membaca isi file dan menampilkannya ke layar//
+//Fungsi membaca isi file dan menampilkannya ke layar
 
 #endif
