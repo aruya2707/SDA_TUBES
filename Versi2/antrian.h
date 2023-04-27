@@ -11,7 +11,7 @@
 
 /***Deklarasi Variabel***/
 typedef struct Customer *address;	//node2 di queue
-typedef struct ListBarang *addresslist;
+typedef struct BrgBelian *addressbrg;	//pointer ke list barang belanjaan
 
 typedef struct{
 	infotype kasir_1,kasir_2,kasir_3;
@@ -33,6 +33,10 @@ typedef struct BrgBelian{
 typedef struct {
 	address First;
 }List;
+
+typedef struct {
+	addressbrg Head;
+}Brg;
 
 /***Deklarasi Modul***/
 void CreateList(List *L);
