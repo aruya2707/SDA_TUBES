@@ -6,8 +6,8 @@ void CreateList(List *L){
 	First(*L) = NULL;
 }
 
-void CreateListBelian(addressbrg *L){
-	*L = (addressbrg)malloc(sizeof(BrgBelian));
+void CreateBrg(Brg *L){
+	Head(*L) = NULL;
 }
 
 boolean IsEmpty(List L){
@@ -42,6 +42,7 @@ void DeAlokasi (address P){
 	}
 	
 }
+
 
 //
 //void Enqueue_Belanja(ListBarang P[5]){
