@@ -42,5 +42,6 @@ void list_barang();
 
 /***Deklarasi Modul Kasir***/
 int cek_akun(Login_Kasir *akun, int jml_akun, char *username, char *password);
-
+void Login_Admin();
+void Login_Customer();
 #endif
