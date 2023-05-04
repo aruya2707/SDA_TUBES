@@ -53,6 +53,7 @@ void Login_Admin(){
 }
 
 void Login_Customer(){
+		
 	int jml_akun = 3;
 	    Login_Kasir akun[jml_akun];
 	
@@ -83,51 +84,18 @@ void Login_Customer(){
 	    int kasir = cek_akun(akun, jml_akun, username, password);
 	    if (kasir != -1) {
 	        printf("Log in berhasil. Selamat datang, %s.\n", akun[kasir].username);
-	    } else {
+	    	
+		} else {
 	        printf("Log in gagal. Username atau password salah.\n");
 	    }
 }
-
-Date Create_Date() {
-    time_t now = time(NULL);
-    struct tm *currentTime = localtime(&now);
-
-    Date d = {
-        .day = currentTime->tm_mday,
-        .month = currentTime->tm_mon + 1,
-        .year = currentTime->tm_year + 1900,
-        .hour = currentTime->tm_hour,
-        .minute = currentTime->tm_min,
-        .second = currentTime->tm_sec
-    };
-	printf("Date: %02d/%02d/%04d\n", d.day, d.month, d.year);
-	printf("Time: %02d:%02d:%02d\n", d.hour, d.minute, d.second);
-    return d;
-}
-
-
-void Hitung_transaksi(){
-	int jumlah_item,
-	printf ("Berapa barang yang ingin dibeli:"); scanf ("%d", &jumlah_item);
-}
-
-
-////	==================================================FUNCTION HITUNG SUB TOTAL==========================================================================
-//int hitungsubtotal(int sub, int hrg){
-//	int subtotal;
-//	subtotal = sub*hrg;
-//	return subtotal;
-//}
-////	==================================================FUNCTION HITUNG KEMBALIAN==========================================================================
-//int hitungkembalian(int uang, int bayar){
-//	int kembalian;
-//	kembalian = uang - bayar;
-//	return kembalian;
-//}
 
 void MenuCustomer(){
 	Queue MyQueue;
 	
 }
 
+void Transaksi (){
+	
+}
 

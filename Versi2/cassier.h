@@ -6,7 +6,6 @@
 #include <malloc.h>
 #include <limits.h>
 #include <string.h>
-#include <time.h>
 #include "boolean.h"
 
 /***Deklarasi Kamus data***/
@@ -25,17 +24,6 @@ typedef struct Login_Kasir{
     char username[50];
     char password[50];
 } Login_Kasir;
-
-typedef struct Date{
-    int day;
-    int month;
-    int year;
-    int hour;
-    int minute;
-    int second;
-} Date;
-
-
 
 
 /***Deklarasi Modul Barang***/
@@ -62,8 +50,5 @@ int cek_akun(Login_Kasir *akun, int jml_akun, char *username, char *password);
 void Login_Admin();
 void Login_Customer();
 void MenuCustomer();
-Date Create_Date();
-//int hitungsubtotal(); //function untuk hitung subtotal
-//int hitungkembalian(); //function untuk hitung kembalian
 
 #endif
