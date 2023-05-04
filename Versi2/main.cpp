@@ -7,24 +7,26 @@
 
 int main() {
 	Kasir kasir[3];
-	Queue MyQueue;
+	
 	
 	int pilih;
 	printf("#  S E L A M A T   D A T A N G   D I   A L A M A R T   #\n");
 	printf("########################################################\n");
-	printf("1. Login Admin\n2. Login Kasir\n3. Kembali\n");
+	printf("1. Login Admin\n2. Login Kasir\n3. Customer\n4. Kembali\n");
 	printf("########################################################\n");
 	printf("Pilih :");
 	scanf("%d", &pilih);
 	switch (pilih){
 		case 1 :
-			Login_Admin();
+			Login_Admin();	//untuk update barang-barang
 			system ("cls");
 			break;
 		case 2 :
-			Login_Customer();
+			Login_Customer(); //untuk transaksi kasir
 			break;
 		case 3 :
+			MenuCustomer();	//untuk membeli
+		case 4 :
 			exit(1);
 			break;
 	}

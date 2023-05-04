@@ -65,4 +65,5 @@ void Enqueue(Queue *Q, infochar X);
 void Dequeue(Queue *Q);
 /*menghapus node setelah melakukan transaksi di kasir*/
 
+
 #endif

@@ -49,4 +49,6 @@ void DeleteProduct(int b);
 int cek_akun(Login_Kasir *akun, int jml_akun, char *username, char *password);
 void Login_Admin();
 void Login_Customer();
+void MenuCustomer();
+void MenuAdmin();
 #endif

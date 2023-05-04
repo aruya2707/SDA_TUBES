@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "cassier.h"
+#include "antrian.h"
 
 // Fungsi untuk memeriksa apakah username dan password sesuai dengan akun yang terdaftar
 int cek_akun(Login_Kasir *akun, int jml_akun, char *username, char *password) {
@@ -45,6 +45,7 @@ void Login_Admin(){
 	    int kasir = cek_akun(akun, jml_akun, username, password);
 	    if (kasir != -1) {
 	        printf("Log in berhasil. Selamat datang, %s.\n", akun[kasir].username);
+	        MenuAdmin();
 	    } else {
 	        printf("Log in gagal. Username atau password salah.\n");
 	    }
@@ -85,4 +86,46 @@ void Login_Customer(){
 	        printf("Log in gagal. Username atau password salah.\n");
 	    }
 }
+
+void MenuCustomer(){
+	Queue MyQueue;
+	
+}
+
+void MenuAdmin(){
+	ListBarang L[100];
+	int n = 0;
+	char choice;
+	
+	do{
+		printf("Menu:\n");
+        printf("1. Tambah Barang\n");
+        printf("2. Hapus Barang\n");
+        printf("3. Tampilkan List Barang\n");
+        printf("4. Keluar\n");
+        
+        printf("Pilihan Anda: ");
+        scanf(" %c", &choice);
+        
+        switch(choice){
+    		  case '1':
+            	
+                break;
+            case '2':
+
+                break;
+            case '3':
+             
+                break;
+            case '4':
+                printf("Terima kasih!\n");
+                break;
+            default:
+                printf("Pilihan tidak valid.\n");
+                break;
+        }
+	   printf("\n");        	
+		} while(choice != '4');
+
+	}
 
