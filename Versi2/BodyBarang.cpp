@@ -10,7 +10,7 @@
 
 char *filename = "list_barang.txt";
 
-int BodyBarang() {
+int MenuAdmin() {
 
     int n = 0, infal, pilih;
     do {

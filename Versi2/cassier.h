@@ -37,7 +37,7 @@ void deleteProduct(int b);
 //Menghapus barang yang ada di dalam file
 void list_barang();
 //Membaca dan menampilkan file berupa list
-int BodyBarang();
+int MenuAdmin();
 
 int ReadProduct();
 
@@ -50,5 +50,5 @@ int cek_akun(Login_Kasir *akun, int jml_akun, char *username, char *password);
 void Login_Admin();
 void Login_Customer();
 void MenuCustomer();
-void MenuAdmin();
+
 #endif
