@@ -6,6 +6,9 @@
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
 
 int main() {
+	Kasir kasir[3];
+	Queue MyQueue;
+	
 	int pilih;
 	printf("#  S E L A M A T   D A T A N G   D I   A L A M A R T   #\n");
 	printf("########################################################\n");

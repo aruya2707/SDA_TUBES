@@ -6,22 +6,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "antrian.h"
 
-typedef char* infochar;
-typedef int infotype;
+char *filename = "list_barang.txt";
 
-typedef struct ListBarang{
-	infochar NmBrng[20];	
-	infotype StokBrng, HrgBrng, no;
-}ListBrng[100];
-
-int ReadProduct();
-
-void AddBarang(int b);
-
-void DeleteProduct(int b);
-
-int main() {
+int BodyBarang() {
 
     int n = 0, infal, pilih;
     do {

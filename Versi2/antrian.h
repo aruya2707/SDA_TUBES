@@ -8,14 +8,20 @@
 #define NmBrng(P) (P)->NmBrng
 #define StokBrng(P) (P)->StokBrng
 #define HrgBrng(P) (P)->HrgBrng
+#define Head(L) (L).Head
+#define Nil NULL
 
 /***Deklarasi Variabel***/
 typedef struct Customer *address;	//node2 di queue
 typedef struct BrgBelian *addressbrg;	//pointer ke list barang belanjaan
 
-typedef struct{
-	infotype kasir_1,kasir_2,kasir_3;
-}kasir;
+//typedef struct{
+//	infotype kasir_1,kasir_2,kasir_3;
+//}kasir;
+typedef struct Kasir{
+	infochar info;
+	address queue;
+}Kasir;
 
 typedef struct Customer{
 	addressbrg barang;	//menunjuk ke node BrgBelian
@@ -29,31 +35,34 @@ typedef struct BrgBelian{
 	infotype HrgBrg, JmlBrg;
 	addressbrg NextBrg;
 }BrgBelian;
+
 //pointer ke Queue
 typedef struct {
 	address First;
-}List;
+}Queue;
 
 typedef struct {
 	addressbrg Head;
-}Brg;
+}ListBrg;
 
 /***Deklarasi Modul***/
-void CreateList(List *L);
+void CreateKasir(Kasir K[]);
+//membuat array list kasir
+void CreateQueue(Queue *Q);
 //terbentuk list kosong untuk pointer First
-void CreateListBelian(addressbrg *L);
+void CreateListBrg(ListBrg *L);
 //Alokasi barang belanjaan
-boolean IsEmpty(List L);
+boolean IsEmpty(Queue Q);
 /* Mengirim true jika List Kosong */
 address Alokasi_Antrian(infochar X);
 /* Mengirimkan address hasil alokasi sebuah elemen */
 void Enqueue_Belanja();
 //Membaca file yang berisi barang belanjaan;
-void InsertLast(List *L, address P);
+void InsertLast(Queue *Q, address P);
 //menginsertkan customer ke queue
-void Enqueue(List *L, infochar X);
+void Enqueue(Queue *Q, infochar X);
 /*melakukan alokasi elemen */
-void Dequeue(List *L);
+void Dequeue(Queue *Q);
 /*menghapus node setelah melakukan transaksi di kasir*/
 
 #endif

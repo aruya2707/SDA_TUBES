@@ -14,12 +14,11 @@ dimana setiap pembelianstok akan berkurang dan data pilihan
 dimasukkan ke node BrgBelian */
 typedef char* infochar;
 typedef int infotype;
-typedef struct BrgBelian *addressbrg;	//node yg ditunjuk queue sebagai barang belian
 
 typedef struct ListBarang{
-	infochar NmBrng;	
-	infotype StokBrng,HrgBrng;
-}ListBarang;
+	infochar NmBrng[20];	
+	infotype StokBrng, HrgBrng, no;
+}ListBrng[100];
 
 typedef struct Login_Kasir{
     char username[50];
@@ -38,7 +37,13 @@ void deleteProduct(int b);
 //Menghapus barang yang ada di dalam file
 void list_barang();
 //Membaca dan menampilkan file berupa list
+int BodyBarang();
 
+int ReadProduct();
+
+void AddBarang(int b);
+
+void DeleteProduct(int b);
 
 /***Deklarasi Modul Kasir***/
 int cek_akun(Login_Kasir *akun, int jml_akun, char *username, char *password);

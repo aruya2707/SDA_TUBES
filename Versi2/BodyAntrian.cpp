@@ -2,17 +2,27 @@
 #include <stdlib.h>
 #include "antrian.h"
 
-void CreateList(List *L){
-	First(*L) = NULL;
+//membuat array list kasir
+void CreateKasir(Kasir K[]){
+	int i;
+	infochar info[3] = {"kasir_1", "kasir_2" , "kasir_3"};
+	for (i = 0; i < 3; i++){
+		K[i].info = info[i];
+		K[i].queue = NULL;
+	}
 }
 
-void CreateBrg(Brg *L){
-	Head(*L) = NULL;
+void CreateQueue(Queue *Q){
+	First(*Q) = Nil;
 }
 
-boolean IsEmpty(List L){
+void CreateListBrg(ListBrg *L){
+	Head(*L) = Nil;
+}
+
+boolean IsEmpty(Queue Q){
 /* Mengirim true jika List Kosong */	
-	if(First(L) == NULL){
+	if(First(Q) == NULL){
 		return true;
 	}else{
 		return false;
@@ -80,11 +90,11 @@ void DeAlokasi (address P){
 //}
 
 
-void InsertLast(List *L, address P){
+void InsertLast(Queue *Q, address P){
 	address Last;
 	
-	if (First(*L) != NULL){
-		Last = First(*L);
+	if (First(*Q) != NULL){
+		Last = First(*Q);
 		while (Next(Last) != NULL){
 			Last = Next(Last);
 		}
@@ -92,12 +102,12 @@ void InsertLast(List *L, address P){
 	}
 	else
 	{
-		First(*L) = P;
+		First(*Q) = P;
 	}
 }
 
 
-void Enqueue(List *L, infochar X)
+void Enqueue(Queue *Q, infochar X)
 /* IS : L mungkin Kosong */
 /* FS : melakukan alokasi sebuah elemen dan */
 /* menambahkan elemen list di akhir (elemen terakhir adalah yang baru) */
@@ -114,17 +124,17 @@ void Enqueue(List *L, infochar X)
 	//TampilListBarang();
 	
 	//pilihan disimpan ke G
-		InsertLast(&(*L),P);	
+		InsertLast(&(*Q),P);	
 	//setelah mengalami perubahan input G ke antrian
 	}
 }
 
 
-void Dequeue(List *L){
+void Dequeue(Queue *Q){
 	//customer sampai di kasir
 	address P;
-	P = First(*L);
-	First(*L) = Next(First(*L));
+	P = First(*Q);
+	First(*Q) = Next(First(*Q));
 	
 	//P dismpan untuk history dan struk belanja nantinya
 	//DeAlokasi(P);
