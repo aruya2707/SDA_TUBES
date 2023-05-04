@@ -53,6 +53,7 @@ void Login_Admin(){
 }
 
 void Login_Customer(){
+		
 	int jml_akun = 3;
 	    Login_Kasir akun[jml_akun];
 	
@@ -83,7 +84,8 @@ void Login_Customer(){
 	    int kasir = cek_akun(akun, jml_akun, username, password);
 	    if (kasir != -1) {
 	        printf("Log in berhasil. Selamat datang, %s.\n", akun[kasir].username);
-	    } else {
+	    	
+		} else {
 	        printf("Log in gagal. Username atau password salah.\n");
 	    }
 }
@@ -93,8 +95,6 @@ void MenuCustomer(){
 	
 }
 
-
-	
 void Transaksi (){
 	
 }
