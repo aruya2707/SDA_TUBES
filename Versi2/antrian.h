@@ -10,6 +10,7 @@
 #define HrgBrg(P) (P)->HrgBrg
 #define JmlBrg(P) (P)->JmlBrg
 #define NextBrg(P) (P)->NextBrg
+#define Bawaan(P) (P)->Bawaan
 #define Head(L) (L).Head
 #define Nil NULL
 
@@ -28,7 +29,7 @@ typedef struct Kasir{
 typedef struct Customer{
 	addressbrg barang;	//menunjuk ke node BrgBelian
 	infochar NmPmbli;	//nama pembeli
-//	bool membawaTroli;	//untuk troli atau keranjang
+	infochar Bawaan;	//untuk troli atau keranjang
 	address next;	//pointer ke node pelanggan di depannya
 }Customer;
 

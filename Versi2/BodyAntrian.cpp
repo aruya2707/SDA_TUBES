@@ -41,8 +41,9 @@ address Alokasi_Antrian(infochar X){
 	P = (address)malloc(sizeof(Customer));
 	if(P != NULL){ //alokasi berhasil
 		NmPmbli(P) = X;
-		Barang(P) = NULL;
-		Next(P) = NULL;
+		Bawaan(P) = Nil;
+		Barang(P) = Nil;
+		Next(P) = Nil;
 	}
 	return (P);
 }
