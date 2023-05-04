@@ -7,8 +7,8 @@
 
 int main() {
 	Kasir kasir[3];
-	CreateKasir(&kasir[3]);
 	 
+	Date currentDate = Create_Date();
 	int pilih;
 	printf("#  S E L A M A T   D A T A N G   D I   A L A M A R T   #\n");
 	printf("########################################################\n");
@@ -19,6 +19,7 @@ int main() {
 	switch (pilih){
 		case 1 :
 			Login_Admin();	//untuk update barang-barang
+	
 			break;
 		case 2 :
 			Login_Customer(); //untuk transaksi kasir

@@ -5,11 +5,9 @@
 #define NmPmbli(P) (P)->NmPmbli
 #define Barang(P) (P)->barang
 #define Next(P) (P)->next
-#define NmBrg(P) (P)->NmBrg
-#define StokBrg(P) (P)->StokBrg
-#define HrgBrg(P) (P)->HrgBrg
-#define JmlBrg(P) (P)->JmlBrg
-#define NextBrg(P) (P)->NextBrg
+#define NmBrng(P) (P)->NmBrng
+#define StokBrng(P) (P)->StokBrng
+#define HrgBrng(P) (P)->HrgBrng
 #define Head(L) (L).Head
 #define Nil NULL
 
@@ -48,32 +46,24 @@ typedef struct {
 }ListBrg;
 
 /***Deklarasi Modul***/
-
 void CreateKasir(Kasir K[]);
 //membuat array list kasir
 void CreateQueue(Queue *Q);
 //terbentuk list kosong untuk pointer First
 void CreateListBrg(ListBrg *L);
-//terbentuk pointer yang menunjuk BrgBelian
+//Alokasi barang belanjaan
 boolean IsEmpty(Queue Q);
 /* Mengirim true jika List Kosong */
 address Alokasi_Antrian(infochar X);
 /* Mengirimkan address hasil alokasi sebuah elemen */
-addressbrg Alokasi_Barang(infochar nama, infotype harga, infotype jumlah);
-//Mengirimkan address hasil alokasi elemen BrgBelian
-void DeAlokasi_Antrian(address P);
-
-void DeAlokasi_Barang (addressbrg P);
-
+void Enqueue_Belanja();
+//Membaca file yang berisi barang belanjaan;
 void InsertLast(Queue *Q, address P);
 //menginsertkan customer ke queue
-void InsertLastB(address *P, addressbrg Brg);
-
 void Enqueue(Queue *Q, infochar X);
 /*melakukan alokasi elemen */
-void Dequeue_Antrian(Queue *Q);
+void Dequeue(Queue *Q);
 /*menghapus node setelah melakukan transaksi di kasir*/
-void Dequeue_Barang(BrgBelian *B);
 
 
 #endif

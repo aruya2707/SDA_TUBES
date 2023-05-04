@@ -30,13 +30,12 @@ boolean IsEmpty(Queue Q){
 }
 
 /**** Manajemen Memory ****/
-address Alokasi_Antrian(infochar X){
-
+address Alokasi_Antrian(infochar X)
 /* Mengirimkan address hasil alokasi sebuah elemen */
 /* Jika alokasi berhasil, maka address != Nil, 	   */
 /*	dan misalnya menghasilkan P, maka Info(P) = X, Next(P) = Nil */
 /* Jika alokasi gagal, mengirimkan Nil */
-
+{
 	address P;
 	P = (address)malloc(sizeof(Customer));
 	if(P != NULL){ //alokasi berhasil
@@ -47,35 +46,54 @@ address Alokasi_Antrian(infochar X){
 	return (P);
 }
 
-addressbrg Alokasi_Barang(infochar nama, infotype harga, infotype jumlah){
-	addressbrg P;
-	P = (addressbrg) malloc (sizeof (BrgBelian));
+void DeAlokasi (address P){
+	if(P != NULL){
+		free(P);
+	}
 	
-	if (P != Nil){
-		NmBrg(P) = nama;
-		HrgBrg(P) = harga;
-		JmlBrg(P) = jumlah;
-		NextBrg(P) = Nil;
-	}
-	return (P);
 }
 
-void DeAlokasi_Antrian (address P){
-	if(P != Nil){
-		free(P);
-	}
-}
 
-void DeAlokasi_Barang (addressbrg P){
-	if(P != Nil){
-		free(P);
-	}
-}
+//
+//void Enqueue_Belanja(ListBarang P[5]){
+//	addressbrg L;
+//	BrgBelian P_brg;
+//	address P_cus;
+//	CreateListBelian(&L);
+//	
+//	//Prompt the user to enter the item they want to buy and the quantity they want to purchase
+//	int pilih, qty;
+//	printf("\nMasukkan nomor barang yang ingin dibeli: ");
+//	scanf("%d", &pilih);
+//	printf("Masukkan jumlah yang ingin dibeli: ");
+//	scanf("%d", &qty);
+//
+//	//Check if the item is in stock
+//	if(P[pilih-1].StokBrng >= qty){
+//		//Create a new BrgBelian node with the user's input
+//		P_brg = (BrgBelian) malloc(sizeof(BrgBelian));
+//		NmBrng(P_brg) = P[pilih-1].NmBrng;
+//		HrgBrng(P_brg) = P[pilih-1].HrgBrng;
+//		JmlBrg(P_brg) = qty;
+//		NextBrg(P_brg) = NULL;
+//
+////Add the new BrgBelian node to the end of the customer's barang list
+//		P_cus = (address) malloc(sizeof(Customer));
+//		barang(P_cus) = L;
+//		NmPmbli(P_cus) = "Pembeli";
+//		next(P_cus) = NULL;
+//		
+//		if(First(L) == NULL){
+//			
+//		} 
+//	}
+//}
+
 
 void InsertLast(Queue *Q, address P){
 	address Last;
 	
-	if (First(*Q) != Nil){
+	if (First(*Q) != NULL){
 		Last = First(*Q);
 		while (Next(Last) != NULL){
 			Last = Next(Last);
@@ -88,20 +106,6 @@ void InsertLast(Queue *Q, address P){
 	}
 }
 
-void InsertLastB (address *P, addressbrg Brg){
-/* IS : L sembarang, P sudah dialokasi */
-/* FS : P ditambahkan sebagai elemen terakhir yang baru */
-addressbrg Last;
-if (Barang(*P) != Nil)
-{
-	Last = Barang(*P);
-	while (NextBrg(Last) != Nil)
-	{	Last = NextBrg(Last);}
-		NextBrg(Last) = Brg;
-	}else{
-		Barang(*P) = Brg;
-	}
-}
 
 void Enqueue(Queue *Q, infochar X)
 /* IS : L mungkin Kosong */
@@ -125,18 +129,13 @@ void Enqueue(Queue *Q, infochar X)
 	}
 }
 
-//void Dequeue_Antrian(Queue *Q){
-//	//customer sampai di kasir
-//	address P;
-//	P = First(*Q);
-//	First(*Q) = Next(First(*Q));
-//	DeAlokasi_Antrian(P);
-//}
-//
-//void Dequeue_Barang(BrgBelian *B){
-//	//customer sampai di kasir
-//	address P;
-//	P = Head(*B);
-//	Head(*B) = NextBrg(Head(*B));
-//	DeAlokasi_Barang(P);
-//}
+
+void Dequeue(Queue *Q){
+	//customer sampai di kasir
+	address P;
+	P = First(*Q);
+	First(*Q) = Next(First(*Q));
+	
+	//P dismpan untuk history dan struk belanja nantinya
+	//DeAlokasi(P);
+}
