@@ -147,6 +147,7 @@ void Enqueue_Pelanggan(Queue_P *Q, Queue_K *K, infotype X, infotype2 Y, infotype
 	
 }
 
+//pemilihan barang ditapilkan di modul readproduct yang sama dg nampilin barang di admin
 int readProduct(){
 	FILE *file;
 	int a=0;
