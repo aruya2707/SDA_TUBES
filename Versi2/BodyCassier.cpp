@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include "antrian.h"
-
 // Fungsi untuk memeriksa apakah username dan password sesuai dengan akun yang terdaftar
 int cek_akun(Login_Kasir *akun, int jml_akun, char *username, char *password) {
     int i;
@@ -13,7 +12,6 @@ int cek_akun(Login_Kasir *akun, int jml_akun, char *username, char *password) {
     }
     return -1; // username dan password tidak sesuai
 }
-
 void Login_Admin(){
 	int jml_akun = 3;
 	    Login_Kasir akun[jml_akun];
@@ -51,7 +49,6 @@ void Login_Admin(){
 	        printf("Log in gagal. Username atau password salah.\n");
 	    }
 }
-
 void Login_Customer(){
 		
 	int jml_akun = 3;
@@ -89,13 +86,11 @@ void Login_Customer(){
 	        printf("Log in gagal. Username atau password salah.\n");
 	    }
 }
-
-
-void MenuCustomer() {
+void MenuCustomer(Kasir K[]) {
     Queue MyQueue;
-    addressbrg brg;
+    addressbrg brg, newBrg;
     infochar nama, namab;
-    infotype pilih, jumlah, menu, idx, harga;
+    infotype pilih, jumlah, menu, idx, harga, lagi;
 
     // meminta input nama pelanggan
     printf("Masukkan nama Pelanggan : ");
@@ -119,34 +114,39 @@ void MenuCustomer() {
     FILE *file;
     char *lis = "list_barang.txt";
     file = fopen(lis, "r");
+    do{
     for (int i = 0; i < menu; i++) {
         infochar nama;
         infotype harga, stok;
         fscanf(file, "%*d;%m[^;];%d;%d\n", &nama, &harga, &stok);
-        if (i == 0) {
-            printf("Masukkan jumlah barang yang ingin dibeli : ");
-            scanf("%d", &jumlah);
-            brg = Alokasi_Barang(nama, harga, jumlah);
-        } else {
-            addressbrg newBrg;
-            printf("Masukkan jumlah barang yang ingin dibeli : ");
-            scanf("%d", &jumlah);
-            newBrg = Alokasi_Barang(nama, harga, jumlah);
-            if (newBrg != Nil) {
-                NextBrg(brg) = newBrg;
-                brg = newBrg;
-            }
-        }
+	if (i == 0) {
+	    printf("Masukkan jumlah barang yang ingin dibeli : ");
+	    scanf("%d", &jumlah);
+	    getchar(); // membaca karakter newline yang tersisa di buffer input
+	    brg = Alokasi_Barang(nama, harga, jumlah);
+	} else {
+	    printf("Masukkan jumlah barang yang ingin dibeli : ");
+	    scanf("%d", &jumlah);
+	    getchar(); // membaca karakter newline yang tersisa di buffer input
+	    
+	    
+	    
+	    newBrg = Alokasi_Barang(nama, harga, jumlah);
+	    if (newBrg != Nil) {
+        NextBrg(brg) = newBrg;
+        brg = newBrg;
+	    }
+	}
         free(nama);
     }
     fclose(file);
+        
+    printf("\nApakah anda ingin membeli lagi? (Y/N)\n");
+    scanf("%c", &lagi);
+	}while (lagi == 'Y' || lagi == 'y');
     
-    //InsVLastB(&MyQueue, brg);
-
-}
-
-
-void Transaksi (){
+	Kondisi_Enqueue(K);
 	
 }
-
+void Transaksi (){	
+}

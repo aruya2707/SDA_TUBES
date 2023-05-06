@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-//#include "cassier"
 #include "antrian.h"
 
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
@@ -24,7 +23,7 @@ int main() {
 			Login_Customer(); //untuk transaksi kasir
 			break;
 		case 3 :
-			MenuCustomer();	//untuk membeli
+			MenuCustomer(kasir);	//untuk membeli 
 		case 4 :
 			exit(1);
 			break;

@@ -7,7 +7,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include "antrian.h"
-
 char *filename = "list_barang.txt";
 
 int MenuAdmin() {
@@ -41,8 +40,6 @@ int MenuAdmin() {
 
     return 0;
 }
-
-
 int ReadProduct(){
 	FILE *file;
 	int a=0;
@@ -71,7 +68,6 @@ int ReadProduct(){
 	printf("\njumlah jenis produk : %d",a);	
 	return a;
 }
-
 void AddBarang(int b){
 	FILE *file;
 	char *dir = "list_barang.txt";
@@ -98,7 +94,6 @@ void AddBarang(int b){
 	fprintf(file, "\n%d;%s;%d;%d", brg[b].no, brg[b].NmBrng, brg[b].HrgBrng, brg[b].StokBrng);
 	fclose(file);
 }
-
 void DeleteProduct(int b){
 	FILE *file, *fl;
 	char *dir = "list_barang.txt";

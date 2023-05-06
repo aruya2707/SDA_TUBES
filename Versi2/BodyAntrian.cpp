@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "antrian.h"
-
 //membuat array list kasir
 void CreateKasir(Kasir K[]){
 	int i;
@@ -11,15 +10,12 @@ void CreateKasir(Kasir K[]){
 		K[i].queue = NULL;
 	}
 }
-
 void CreateQueue(Queue *Q){
 	First(*Q) = Nil;
 }
-
 void CreateListBrg(ListBrg *L){
 	Head(*L) = Nil;
 }
-
 boolean IsEmpty(Queue Q){
 /* Mengirim true jika List Kosong */	
 	if(First(Q) == NULL){
@@ -28,7 +24,6 @@ boolean IsEmpty(Queue Q){
 		return false;
 	}
 }
-
 /**** Manajemen Memory ****/
 address Alokasi_Antrian(infochar X,infotype N){
 /* Mengirimkan address hasil alokasi sebuah elemen */
@@ -53,7 +48,6 @@ address Alokasi_Antrian(infochar X,infotype N){
 	}
 	return (P);
 }
-
 addressbrg Alokasi_Barang(infochar nama, infotype harga, infotype jumlah){
 	addressbrg P;
 	P = (addressbrg) malloc (sizeof (BrgBelian));
@@ -66,20 +60,17 @@ addressbrg Alokasi_Barang(infochar nama, infotype harga, infotype jumlah){
 	}
 	return (P);
 }
-
 void DeAlokasi_Antrian (address P){
 	if(P != Nil){
 		free(P);
 	}
 }
-
 void DeAlokasi_Barang (addressbrg P){
 	if(P != Nil){
 		free(P);
 	}
 }
-
-
+/***Menghubungkan Link***/
 void InsertLast(Queue *Q, address P){
 	address Last;
 	
@@ -95,7 +86,6 @@ void InsertLast(Queue *Q, address P){
 		First(*Q) = P;
 	}
 }
-
 void InsertLastB (address *P, addressbrg Brg){
 /* IS : L sembarang, P sudah dialokasi */
 /* FS : P ditambahkan sebagai elemen terakhir yang baru */
@@ -110,7 +100,6 @@ if (Barang(*P) != Nil)
 		Barang(*P) = Brg;
 	}
 }
-
 //untuk Queue customer
 void InsVLastQ(Queue *Q, infochar X, infotype N){
 	address P;
@@ -129,11 +118,27 @@ void InsVLastQ(Queue *Q, infochar X, infotype N){
 //		InsertLastB (&(*P), Brg);
 //	}
 //}
-
-void Kondisi_Enqueue(){
-	
+void Kondisi_Enqueue(Kasir K[]){
+	// memilih kasir berdasarkan jumlah troli dalam queue pelanggan
+    int min_troli = -1;
+    int min_troli_idx = -1;
+    int i;
+    for (i = 0; i < 3; i++) {
+        int troli_count = 0;
+        address p = K[i].queue;
+        while (p != Nil) {
+            if (Bawaan(p) == "Troli") {
+                troli_count++;
+            }
+            p = Next(p);
+        }
+        if (min_troli == -1 || troli_count < min_troli) {
+            min_troli = troli_count;
+            min_troli_idx = i;
+        }
+    }
 }
-
+//
 //void Dequeue_Antrian(Queue *Q){
 //	//customer sampai di kasir
 //	address P;
@@ -149,3 +154,6 @@ void Kondisi_Enqueue(){
 //	Head(*B) = NextBrg(Head(*B));
 //	DeAlokasi_Barang(P);
 //}
+void TampilAntrian(){
+	
+}
