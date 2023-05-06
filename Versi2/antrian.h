@@ -58,7 +58,7 @@ void CreateListBrg(ListBrg *L);
 //terbentuk pointer yang menunjuk BrgBelian
 boolean IsEmpty(Queue Q);
 /* Mengirim true jika List Kosong */
-address Alokasi_Antrian(infochar X);
+address Alokasi_Antrian(infochar X,infotype N);
 /* Mengirimkan address hasil alokasi sebuah elemen */
 addressbrg Alokasi_Barang(infochar nama, infotype harga, infotype jumlah);
 //Mengirimkan address hasil alokasi elemen BrgBelian
@@ -69,6 +69,10 @@ void DeAlokasi_Barang (addressbrg P);
 void InsertLast(Queue *Q, address P);
 //menginsertkan customer ke queue
 void InsertLastB(address *P, addressbrg Brg);
+
+void InsVLastQ(Queue *Q, infochar X, infotype N);
+
+//void InsVLastB(address *P,addressbrg *B);
 
 void Enqueue(Queue *Q, infochar X);
 /*melakukan alokasi elemen */

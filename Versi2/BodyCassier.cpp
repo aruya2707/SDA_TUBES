@@ -90,10 +90,61 @@ void Login_Customer(){
 	    }
 }
 
-void MenuCustomer(){
-	Queue MyQueue;
-	
+
+void MenuCustomer() {
+    Queue MyQueue;
+    addressbrg brg;
+    infochar nama, namab;
+    infotype pilih, jumlah, menu, idx, harga;
+
+    // meminta input nama pelanggan
+    printf("Masukkan nama Pelanggan : ");
+    scanf("%s", &nama);
+    printf("Masukkan pilihan bawaan anda : (1.Troli/2.Keranjang)\n");
+    scanf("%d", &pilih);
+    InsVLastQ(&MyQueue, nama, pilih);
+
+    system("cls");
+    printf("\n");
+
+    /**/
+    idx = ReadProduct();
+    /*meminta inputan user*/
+    do {
+        printf("\nMasukkan nomor barang yang ingin dibeli : ");
+        scanf("%d", &menu);
+    } while (menu < 1 || menu > idx);
+
+    /*mengambil informasi dalam file*/
+    FILE *file;
+    char *lis = "list_barang.txt";
+    file = fopen(lis, "r");
+    for (int i = 0; i < menu; i++) {
+        infochar nama;
+        infotype harga, stok;
+        fscanf(file, "%*d;%m[^;];%d;%d\n", &nama, &harga, &stok);
+        if (i == 0) {
+            printf("Masukkan jumlah barang yang ingin dibeli : ");
+            scanf("%d", &jumlah);
+            brg = Alokasi_Barang(nama, harga, jumlah);
+        } else {
+            addressbrg newBrg;
+            printf("Masukkan jumlah barang yang ingin dibeli : ");
+            scanf("%d", &jumlah);
+            newBrg = Alokasi_Barang(nama, harga, jumlah);
+            if (newBrg != Nil) {
+                NextBrg(brg) = newBrg;
+                brg = newBrg;
+            }
+        }
+        free(nama);
+    }
+    fclose(file);
+    
+    //InsVLastB(&MyQueue, brg);
+
 }
+
 
 void Transaksi (){
 	

@@ -30,8 +30,7 @@ boolean IsEmpty(Queue Q){
 }
 
 /**** Manajemen Memory ****/
-address Alokasi_Antrian(infochar X){
-
+address Alokasi_Antrian(infochar X,infotype N){
 /* Mengirimkan address hasil alokasi sebuah elemen */
 /* Jika alokasi berhasil, maka address != Nil, 	   */
 /*	dan misalnya menghasilkan P, maka Info(P) = X, Next(P) = Nil */
@@ -40,10 +39,17 @@ address Alokasi_Antrian(infochar X){
 	address P;
 	P = (address)malloc(sizeof(Customer));
 	if(P != NULL){ //alokasi berhasil
-		NmPmbli(P) = X;
-		Bawaan(P) = Nil;
-		Barang(P) = Nil;
-		Next(P) = Nil;
+		if (N == 1){
+			NmPmbli(P) = X;
+			Bawaan(P) = "Troli";
+			Barang(P) = Nil;
+			Next(P) = Nil;
+		}else{
+			NmPmbli(P) = X;
+			Bawaan(P) = "Keranjang";
+			Barang(P) = Nil;
+			Next(P) = Nil;
+		}
 	}
 	return (P);
 }
@@ -67,13 +73,12 @@ void DeAlokasi_Antrian (address P){
 	}
 }
 
-
-
 void DeAlokasi_Barang (addressbrg P){
 	if(P != Nil){
 		free(P);
 	}
 }
+
 
 void InsertLast(Queue *Q, address P){
 	address Last;
@@ -106,27 +111,24 @@ if (Barang(*P) != Nil)
 	}
 }
 
-void Enqueue(Queue *Q, infochar X)
-/* IS : L mungkin Kosong */
-/* FS : melakukan alokasi sebuah elemen dan */
-/* menambahkan elemen list di akhir (elemen terakhir adalah yang baru) */
-/* bernilai X jika alokasi berhasil. Jika alokasi gagal IS = FS */
-{
+//untuk Queue customer
+void InsVLastQ(Queue *Q, infochar X, infotype N){
 	address P;
-	//addreslist
-	//Alokasi
-	P = Alokasi_Antrian(X);
-	if(P != NULL)
-	{
-	//Tampilkan barang barang belanjaan
-	//memilih barang belanjaan
-	//TampilListBarang();
 	
-	//pilihan disimpan ke G
-		InsertLast(&(*Q),P);	
-	//setelah mengalami perubahan input G ke antrian
+	P = Alokasi_Antrian(X,N);
+	if (P != Nil){
+		InsertLast (&(*Q), P);
 	}
 }
+//untuk menambahkan queue barang
+//void InsVLastB(address *P, infotype X, infotype H, infotype J){
+//	addressbrg Brg;
+//parameter infochar nama, infotype harga, infotype jumlah
+//	Brg = Alokasi_Barang (X,H,J);
+//	if (Brg != Nil){
+//		InsertLastB (&(*P), Brg);
+//	}
+//}
 
 void Kondisi_Enqueue(){
 	
