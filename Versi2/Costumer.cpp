@@ -35,6 +35,16 @@ typedef struct List_Pelanggan {
 	address_P next;
 } List_Pelanggan;
 
+typedef struct customer
+{
+	char nama[20];
+	int kode;
+	char order[20];
+	int harga;
+	int jumlah;
+	int TotalHarga;
+}cstmr[10];
+
 typedef struct ListBarang{
 	char NmBrng[20];	
 	infotype StokBrng, HrgBrng, no;
@@ -69,6 +79,8 @@ boolean isEmpty_Keranjang(address_K p);
 
 void Tampil_List_Keranjang (address_K p);
 
+struct customer input(struct customer cst[10], int *c);
+
 int main() {
 	infotype pilih, Qty, nomor, Dompet, Nmr_ksr;
 	infotype2 nama;
@@ -92,6 +104,8 @@ int main() {
 		Pelanggan = Pelanggan->next;
 	}
 	do {
+		
+		menu :
 		// menampilkan menu
 		printf("\n=== MENU ===\n");
 		printf("1. Beli barang\n");
@@ -102,32 +116,26 @@ int main() {
 
 		switch (pilih){
 			case 1: {
-				readProduct();
-				printf("\nPilih Barang : ");
-				scanf("%d", &nomor);
-				// mencari node barang yang sesuai dengan nomor yang diinputkan
-				Barang = Head_Barang;
-				for (int i = 1; i < nomor; i++) {
-					Barang = Barang->next;
-				}
-				printf("Masukan Jumlah Barang : ");
-				scanf("%d", &Qty);
-				
-				Pelanggan->Keranjang = Head_Keranjang;
-				Create_Node_Keranjang(&Keranjang);
-				Isi_Node_Keranjang(&Keranjang, Barang->HrgBrng, Barang->NmBrng, Qty);
-				Ins_Akhir_Keranjang(&Pelanggan->Keranjang, Keranjang);
-				
-				menu_pelanggan = false;
-				Head_Keranjang = Pelanggan->Keranjang;
+				cstmr data;
+				int x, w;
+				system ("cls");
+					
+				input(data, &x);
+				system("cls");
+				goto menu;
 				break;
 			}
 			case 2: {
-					printf("List Keranjang : \n");
-					Tampil_List_Keranjang(Head_Keranjang);
-					getch();
+				printf("\nList Keranjang : \n");
+				Tampil_List_Keranjang(Head_Keranjang);
+				getch();
 				break;
-			}default: {
+			}
+			case 3: {
+				printf("Silahkan pilih no kasir");
+				break;
+			}
+			default: {
 					printf("Pilihan tidak ada!\n");
 				break;
 			}
@@ -147,34 +155,105 @@ void Enqueue_Pelanggan(Queue_P *Q, Queue_K *K, infotype X, infotype2 Y, infotype
 	
 }
 
-//pemilihan barang ditapilkan di modul readproduct yang sama dg nampilin barang di admin
-int readProduct(){
-	FILE *file;
-	int a=0;
-	int ch;
-	char *lis = "list_barang.txt";
-	ListBrng brg;
+struct customer input(struct customer cst[10], int *c)
+{
+	FILE *fl, *fa;
+	char pesan;
+	int n, a, no, j;
+	int x, b, q;
+	ListBrng prd;
 	
-//	file = fopen("list_barang.txt", "r");
-	// 
-	if ( (file = fopen(lis,"r"))== NULL )
-	{
-		printf("File tidak dapat dibuka!\r\n");
-	}
+	char *dir = "list_barang.txt";
 	
-/*Menampilkan List barang*/
-	printf("---------------------------------------------\n");
-	printf("No\tNama Produk\t\tHarga\tStok\n");
-	printf("---------------------------------------------\n");
-	while (fscanf(file,"%d;%[^;];%d;%d\n", &brg[a].no, &brg[a].NmBrng, &brg[a].HrgBrng, &brg[a].StokBrng) != EOF)
-	{
-		printf("%d\t%-20s\t%d\t%d\n", brg[a].no, brg[a].NmBrng, brg[a].HrgBrng, brg[a].StokBrng);
-		a++;
-	}	
-	fclose(file);
+	no = 0;
+	n = 0;
 	
-	printf("\njumlah jenis produk : %d",a);	
-	return a;
+	do
+	{	
+		ulang :
+		a = 0;
+		system ("cls");
+		
+		printf("\n");
+		printf("\t\t=================================================\n");
+		
+		//Menampilkan produk
+		fl = fopen(dir,"r");
+		printf("\t\tNo\tNama Produk\t\tHarga\tJumlah\n");
+		printf("\t\t-------------------------------------------------\n");
+		do{
+			fscanf(fl,"%d;%[^;];%d;%d\n", &prd[a].no, &prd[a].NmBrng, &prd[a].HrgBrng, &prd[a].StokBrng);
+			printf("\t\t%d\t%-20s\t%d\t%d\n", prd[a].no, prd[a].NmBrng, prd[a].HrgBrng, prd[a].StokBrng);
+			a++;
+		}
+		while(!feof(fl));
+		printf("\t\t-------------------------------------------------\n");
+		printf("\t\t99\tKembali\n");
+		printf("\t\t=================================================\n");
+		printf("\n");
+		fclose(fl);
+	
+		lagi :
+		//kode 
+		printf("\t\t\tPilihan \t: "); 
+		scanf("%d", &cst[n].kode);
+		no = cst[n].kode;
+		
+		if (cst[n].kode == prd[no].no){
+			//tampil nama dan harga produk
+			printf("\t\t\tNama Barang \t: %s", prd[no].NmBrng);  //jenis kue
+			strcpy(cst[n].order, prd[no].NmBrng);
+			printf("\n\t\t\tHarga Barang \t: Rp. %d", prd[no].HrgBrng);  //harga kue
+			cst[n].harga = prd[no].HrgBrng;	
+			
+			//jumlah
+			printf("\n\t\t\tJumlah \t\t: ");		//jumlah toples
+			scanf("%d", &cst[n].jumlah);
+			
+			if (cst[n].jumlah > prd[no].StokBrng){
+				printf("\n\t\t\tStok tidak cukup");
+				goto lagi;
+			}else{
+				//mengurangi produk
+				prd[no].StokBrng = prd[no].StokBrng - cst[n].jumlah;
+				b = 0;
+				fa = fopen(dir,"w");
+				do{
+					fprintf(fa, "%d;%s;%d;%d", prd[b].no, prd[b].NmBrng, prd[b].HrgBrng, prd[b].StokBrng);
+					b++;
+					if(b<a){
+						fprintf(fa,"\n");
+					}
+				}
+				while(b<a);
+				fclose(fa);
+				
+			}
+			
+			//Total Harga
+			cst[n].TotalHarga = cst[n].harga * cst[n].jumlah; 
+			printf("\t\t\tTotal Harga \t: Rp. %d", cst[n].TotalHarga);
+			printf("\n");
+			printf("\t\t=================================================\n");
+			
+			//pesan lagi
+			printf("\n");
+			printf("\t\t\tPesan lagi [Y/T]? ");
+			fflush(stdin);
+			scanf("%c", &pesan);
+			printf("\t\t=================================================\n");
+	
+			n++;	
+		}
+		else if (cst[n].kode == 99)
+			n = 99;
+		else 
+			goto ulang; 
+	} 
+	while (pesan == 'Y' || pesan == 'y');
+	
+	*c = n; 
+	return cst[n];
 }
 
 void Create_Node_Pelanggan (address_P *p){	
@@ -278,11 +357,11 @@ boolean isEmpty_Keranjang(address_K p){
 void Tampil_List_Keranjang (address_K p){
 	int i = 1;
 	if(isEmpty_Keranjang(p)){
-		printf("List Kosong\n");
+		printf("Anda belum mengambil apapun!\n");
 	}
 	else{		
 		while(!isEmpty_Keranjang(p)){
-			printf("%d. %s Rp.%d %d buah",i,&p->Nm_brg, p->Harga, p->Qty);
+			printf("Jumlah barang anda %d, anda menggunakan Keranjang!");
 			p = next(p);
 			if(p != Nil){
 				printf("\n");
@@ -293,13 +372,3 @@ void Tampil_List_Keranjang (address_K p){
 	}	
 	
 }
-
-//void Tampil_List_Keranjang (address_K p){
-//	int i = 1;
-//	while (p != NULL) {
-//		printf("| %-4d | %-13s | %-5d | %-7d |\n", i, p->Nm_brg, p->Harga, p->Qty);
-//		p = p->next;
-//		i++;
-//	}
-//	printf("\n");
-//}
