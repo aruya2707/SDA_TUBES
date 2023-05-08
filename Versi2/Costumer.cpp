@@ -372,3 +372,28 @@ void Tampil_List_Keranjang (address_K p){
 	}	
 	
 }
+
+boolean isEmpty_Keranjang(address_K p){
+    if(p == NULL){
+        return true;
+    } else {
+        return false;
+    }
+}
+
+void Tampil_List_Keranjang(address_K p){
+    if(isEmpty_Keranjang(p)){
+        printf("Keranjang kosong\n");
+    } else {
+        int i = 1;
+        while(p != NULL){
+            printf("%d. %s Rp.%d %d buah\n", i, p->Nm_brg, p->Harga, p->Qty);
+            p = next(p);
+            i++;
+        }
+    }
+}
+
+boolean IsUsingKeranjang(address_P p){
+    return !isEmpty_Keranjang(Keranjang(p));
+}
