@@ -15,6 +15,12 @@ typedef struct Customer{
 	infochar Bawaan;	//untuk troli atau keranjang
 	address next;	//pointer ke node pelanggan di depannya
 }Customer;
+
+typedef struct customer{
+	char nama[20], order[20];
+	infotype kode, harga, jumlah, TotalHarga;
+}cstmr[10];
+
 typedef struct BrgBelian{
 	infochar NmBrg;
 	infotype HrgBrg, JmlBrg;
