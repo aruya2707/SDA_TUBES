@@ -150,3 +150,4 @@ void Del_Awal_Antrian (address_A * p, infochar * X);
 /* FS : Elemen pertama List dihapus, nilai info disimpan ke X */
 /* dan alamat elemen pertama di dealokasi */
 #endif
+
