@@ -64,7 +64,7 @@ main(){
 					back_1 = false;
 					system("cls");
 					printf("--------------------------------------------------\n");
-					printf("||		1. Pilih Pelanggan              ||\n");			  
+					printf("||		1. Pilih Pelanggan            ||\n");			  
 					printf("||		2. Tambah Pelanggan             ||\n");
 					printf("||		3. Kembali Ke Menu              ||\n");
 					printf("--------------------------------------------------\n\n");
@@ -106,7 +106,7 @@ main(){
 							menu_pelanggan = false;
 							system("cls");
 							printf("--------------------------------------------------\n");
-							printf("Nama : %s \t Dompet = Rp.%d \t Nomor Kasir = %d \n",&Pelanggan->Nm_pelanggan,Pelanggan->Dompet,Pelanggan->Nmr_ksr);
+							printf("Nama : %s \t \t Dompet = Rp.%d \t  \n",&Pelanggan->Nm_pelanggan,Pelanggan->Dompet,Pelanggan->Nmr_ksr);
 							printf("--------------------------------------------------\n");
 							if(!IsEmpty_Keranjang(Head_Keranjang)){
 								printf("99. Masuk Antrian\n");
