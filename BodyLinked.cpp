@@ -44,7 +44,7 @@ void Tampil_List_Pelanggan (address_P p){
 	}
 	else{		
 		while(!isEmpty_Pelanggan(p)){
-			printf("%d. Nama = %s Dompet = Rp.%d Nomor Kasir = %d",i,&p->Nm_pelanggan, p->Dompet, p->Nmr_ksr);
+			printf("%d. Nama = %s \n\tDompet = Rp.%d \n\tNomor Kasir = %d",i,&p->Nm_pelanggan, p->Dompet, p->Nmr_ksr);
 			p = next(p);
 			if(p != Nil){
 				printf("\n");
@@ -311,7 +311,7 @@ void Tampil_List_Keranjang (address_K p){
 	}
 	else{		
 		while(!isEmpty_Keranjang(p)){
-			printf("%d. %s Rp.%d %d buah",i,&p->Nm_brg, p->Harga, p->Qty);
+			printf("%d. %s Rp.%d %d buah",i,p->Nm_brg, p->Harga, p->Qty);
 			p = next(p);
 			if(p != Nil){
 				printf("\n");

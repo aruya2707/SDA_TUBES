@@ -56,7 +56,7 @@ main(){
 		printf("	||               1. PELANGGAN                   ||\n");
 		printf("	||               2. KASIR                       ||\n");
 		printf("	--------------------------------------------------\n");
-		printf("			       Input Pilihan:");
+		printf("		Input Pilihan:");
 		scanf("%d",&pil);
 		switch(pil){
 			case 1:
@@ -169,60 +169,60 @@ main(){
 			break;
 				
 			case 2:
-    do {
-        back_1 = false;
-        system("cls");
-        printf("--------------------------------------------------\n");
-        printf("||    Pilih kasir 1/2/3?          ||\n");
-        printf("--------------------------------------------------\n");
-        printf("Input pilihan: ");
-        scanf("%d", &nomor);
-
-        if (nomor < 1 || nomor > 3) {
-            printf("Kasir tidak ada.\n");
-            getch();
-            break; // Exit the do-while loop and go back to the main menu
-        }
-
-        nomor = nomor - 1;
-        do {
-            menu_kasir = false;
-            system("cls");
-            printf("--------------------------------------------------\n");
-            printf("Nomor Kasir : %d \n", A[nomor].no_kasir);
-            printf("--------------------------------------------------\n");
-            printf("1. Lihat Antrian \n");
-            printf("2. Proses Antrian Pertama \n");
-            printf("3. Back To Kasir\n");
-            printf("4. Back To Menu\n");
-            printf("Input Pilihan : ");
-            scanf("%d", &pil);
-            switch(pil) {
-                case 1:
-                    printf("List Antrian : \n");
-                    Tampil_List_Antrian(A[nomor].p);
-                    getch();
-                    break;
-                case 2:
-                    Del_Awal_Antrian(&A[nomor].p, &riwayat);
-                    printf("Menghapus Antrian : %s", &riwayat);
-                    getch();
-                    break;
-                case 3:
-                    menu_kasir = true;
-                    break;
-                case 4:
-                    menu_kasir = true;
-                    back_1 = true;
-                    break;
-            }
-        } while (menu_kasir != true);
-    } while (back_1 != true);
-    break;
-
-			default: printf("menu yang dipilih tidak ada");
-		}
-	}while(back_mn != true);
+	   		 do {
+		        back_1 = false;
+		        system("cls");
+		        printf("--------------------------------------------------\n");
+		        printf("||    Pilih kasir 1/2/3?          ||\n");
+		        printf("--------------------------------------------------\n");
+		        printf("Input pilihan: ");
+		        scanf("%d", &nomor);
+		
+		        if (nomor < 1 || nomor > 3) {
+		            printf("Kasir tidak ada.\n");
+		            getch();
+		            break; // Exit the do-while loop and go back to the main menu
+	        }
+	
+	        nomor = nomor - 1;
+	        do {
+	            menu_kasir = false;
+	            system("cls");
+	            printf("--------------------------------------------------\n");
+	            printf("Nomor Kasir : %d \n", A[nomor].no_kasir);
+	            printf("--------------------------------------------------\n");
+	            printf("1. Lihat Antrian \n");
+	            printf("2. Proses Antrian Pertama \n");
+	            printf("3. Back To Kasir\n");
+	            printf("4. Back To Menu\n");
+	            printf("Input Pilihan : ");
+	            scanf("%d", &pil);
+	            switch(pil) {
+	                case 1:
+	                    printf("List Antrian : \n");
+	                    Tampil_List_Antrian(A[nomor].p);
+	                    getch();
+	                    break;
+	                case 2:
+	                    Del_Awal_Antrian(&A[nomor].p, &riwayat);
+	                    printf("Menghapus Antrian : %s", &riwayat);
+	                    getch();
+	                    break;
+	                case 3:
+	                    menu_kasir = true;
+	                    break;
+	                case 4:
+	                    menu_kasir = true;
+	                    back_1 = true;
+	                    break;
+	            }
+	        } while (menu_kasir != true);
+	    } while (back_1 != true);
+	    break;
+	
+				default: printf("menu yang dipilih tidak ada");
+			}
+		}while(back_mn != true);
 }
 	
 	
