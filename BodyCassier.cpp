@@ -20,6 +20,7 @@
 //    }
 //    return -1; // username dan password tidak sesuai
 //}
+//
 //void Login_Admin(){
 //	int jml_akun = 3;
 //	    Login_Kasir akun[jml_akun];
