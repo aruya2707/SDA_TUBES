@@ -9,7 +9,6 @@
 //#include <string.h>
 //#include "queue.h"
 //
-//
 //char *filename = "list_barang.txt";
 //// Fungsi untuk memeriksa apakah username dan password sesuai dengan akun yang terdaftar
 //int cek_akun(Login_Kasir *akun, int jml_akun, char *username, char *password) {
