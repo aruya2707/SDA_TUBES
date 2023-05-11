@@ -119,6 +119,7 @@
 //	printf("\njumlah jenis produk : %d",a);	
 //	return a;
 //}
+//
 //void AddBarang(int b){
 //	FILE *file;
 //	char *dir = "list_barang.txt";
