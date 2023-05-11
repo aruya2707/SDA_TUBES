@@ -186,7 +186,7 @@
 //				brg[z].HrgBrng = brg[z+1].HrgBrng;
 //				brg[z].StokBrng = brg[z+1].StokBrng;
 //			}
-//					
+//			//proses penulisan ulang pada file		
 //			b--;
 //			file = fopen(dir,"w");
 //			do{
