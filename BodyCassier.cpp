@@ -1,174 +1,203 @@
-#include "queue.h"
-
-datakasir Kasir[3];
-DataBarang list[5];
-
-address_P Head_Pembeli = NULL;
-address_BB Head_BarangBelian = NULL;
-address_B Head_Barang = NULL;
-address_P Pembeli = NULL;
-address_B Barang; 
-address_BB BarangBelian;
-address_A Antrian;
-	
-infotype pil,kode,jml,nokasir,harga,lagi,Nomor,i=0;
-infochar nama,riwayat,Nama_Barang;
-
-
-int ReadProduct(){
-	FILE *file;
-	int a=0;
-	int ch;
-	const char *lis = "list_barang.txt";
-	ListBrng brg;
-	
-//	file = fopen("list_barang.txt", "r");
-	// 
-	if ( (file = fopen(lis,"r"))== NULL )
-	{
-		printf("File tidak dapat dibuka!\r\n");
-	}
-	
-/*Menampilkan List barang*/
-	printf("---------------------------------------------\n");
-	printf("No\tNama Produk\t\tHarga\tStok\n");
-	printf("---------------------------------------------\n");
-	while (fscanf(file,"%d;%[^;];%d;%d\n", &brg[a].no, &brg[a].NmBrng, &brg[a].HrgBrng, &brg[a].StokBrng) != EOF)
-	{
-		printf("%d\t%-20s\t%d\t%d\n", brg[a].no, brg[a].NmBrng, brg[a].HrgBrng, brg[a].StokBrng);
-		a++;
-	}	
-	fclose(file);
-	
-	printf("\njumlah jenis produk : %d \n",a);	
-	return a;
-}
-
-
-int MenuPembeli(){
-	int a, n = 0;
-	FILE *fl, *fa;
-	ListBrng prd;
-	Kasir[0].Nomor = 1; 
-	Kasir[1].Nomor = 2;
-	Kasir[2].Nomor = 3;
-	
-	char *dir = "list_barang.txt";
-	a = 0;
-		system ("cls");
-		
-		printf("\n");
-		printf("=================================================\n");
-		
-		//Menampilkan produk
-		fl = fopen(dir,"r");
-		printf("No\tNama Produk\t\tHarga\tJumlah\n");
-		printf("-------------------------------------------------\n");
-		do{
-			fscanf(fl,"%d;%[^;];%d;%d\n", &prd[a].no, &prd[a].NmBrng, &prd[a].HrgBrng, &prd[a].StokBrng);
-			printf("%d\t%-20s\t%d\t%d\n", prd[a].no, prd[a].NmBrng, prd[a].HrgBrng, prd[a].StokBrng);
-			a++;
-		}
-		while(!feof(fl));
-		printf("-------------------------------------------------\n");
-		printf("99\tKembali\n");
-		printf("=================================================\n");
-		printf("\n");
-		fclose(fl);
-
-	for(;;){
-		system ("cls");
-		printf("Daftar Antrian: \n");
-		printf("Kasir 1:\n");
-		Tampil_List_Antrian(Kasir[0].next);
-		printf("Kasir 2:\n");
-		Tampil_List_Antrian(Kasir[1].next);
-		printf("Kasir 3:\n");
-		Tampil_List_Antrian(Kasir[2].next);
-		printf("\n");
-		printf("ALA Mart : \n");
-		printf(" 1. Beli Barang \n");
-		printf(" 2. Proses Antrian \n");
-		printf(" 3. Kembali ke menu \n");
-		printf("Pilihan : "); 
-		scanf("%d", &pil);
-		system("cls");
-		switch(pil)
-		{
-			case 1 :{
-				lagi = 1;
-				printf("Isi Nama Pembeli : ");
-				scanf("%s",&nama);
-				Enqueue_Pembeli(&Head_Pembeli,&Head_BarangBelian,nama,nokasir);
-				Pembeli = Head_Pembeli;
-				while(Pembeli->next != NULL){ 
-					Pembeli = Pembeli->next;	
-				}
-				ReadProduct();
-				while (lagi == 1){
-					printf("\nPilih Barang: ");
-					scanf("%d",&kode);
-					printf("\nMasukan Jumlah Barang: ");
-					scanf("%d",&jml);
-					Nama_Barang = prd[n].NmBrng; //list[kode-1].nama;
-					harga = prd[n].HrgBrng * jml; //list[kode-1].harga * jml;
-					prd[n].StokBrng =  prd[n].StokBrng - jml; //proses pengurangan barang
-					
-					// menulis ulang hasil pengurangan barang diatas
-					FILE *file;
-					file = fopen("list_barang.txt", "w");
-					if (file == NULL) {
-					    printf("Error opening file!\n");
-					    exit(1);
-					}
-					
-					for (int i = 0; i < a; i++) {
-					    fprintf(file, "%d;%s;%d;%d\n", prd[i].no, prd[i].NmBrng, prd[i].HrgBrng, prd[i].StokBrng);
-					}	
-				fclose(file);
-
-				if(prd[n].StokBrng<0 /*list[kode-1].stok<0*/){
-					printf("Maaf Barang Habis\n");
-					prd[n].StokBrng=0; //list[kode-1].stok = 0;
-				}
-					Pembeli->BarangBelian = Head_BarangBelian;				
-					Head_BarangBelian = Pembeli->BarangBelian;
-					Enqueue_BarangBelian(&Head_BarangBelian,harga,Nama_Barang,jml);
-					printf("\nBelanja Lagi?\n 1.Ya\n 2.Tidak\nInput Pilihan: ");
-					scanf("%d",&lagi);
-				}
-				printf("\nPilih No. Kasir (1-3): ");
-				scanf("%d",&nokasir);
-				Antrian = NULL;
-				Create_Node_Antrian(&Antrian);	// dengan parameter antrian, antrian = address A
-				Isi_Node_Antrian(&Antrian, Pembeli->Nama_Pembeli);	// pembeli dengan subvar nama pembeli
-				Ins_Akhir_Antrian(&Kasir[nokasir-1].next,Antrian);	// antrian = address A
-				printf("\nAnda Sudah Masuk Antrian\n");
-				system("pause");	
-				break;
-			}
-			case 2 :{
-				printf("Pilih Kasir(1-3): ");
-				scanf("%d",&i);
-				Dequeue_Antrian(&Kasir[i-1].next,&nama);	// menghapus nama di antrian
-				printf("Nama %s telah dihapus dari antrian\n",&nama);
-				system("pause");
-				break;
-			}
-			case 3 :{
-				printf("\nKembali ke menu Utama\n");
-				exit(1);
-				system("pause");
-			//kembali ke menu
-				break;
-			}
-			default :{
-				printf("Pilihan Tidak Tersedia\n");
-				system("pause");
-				break;
-			}
-		}
-	}
-}
-
-
+//#include <stdio.h>
+//#include <stdlib.h>
+//#include <string.h>
+//#include <conio.h>
+//#include <malloc.h>
+//#include <stdbool.h>
+//#include <limits.h>
+//#include <ctype.h>
+//#include <string.h>
+//#include "queue.h"
+//
+//char *filename = "list_barang.txt";
+//// Fungsi untuk memeriksa apakah username dan password sesuai dengan akun yang terdaftar
+//int cek_akun(Login_Kasir *akun, int jml_akun, char *username, char *password) {
+//    int i;
+//	for (i = 0; i < jml_akun; i++) {
+//        if (strcmp(akun[i].username, username) == 0 && strcmp(akun[i].password, password) == 0) {
+//            return i; // username dan password sesuai
+//        }
+//    }
+//    return -1; // username dan password tidak sesuai
+//}
+//void Login_Admin(){
+//	int jml_akun = 3;
+//	    Login_Kasir akun[jml_akun];
+//	
+//	    FILE *file;
+//	    file = fopen("Admin.txt", "r");
+//	
+//	    if (file == NULL) {
+//	        printf("File tidak dapat dibuka\n");
+//	        exit(1);
+//	    }
+//	
+//	    for (int i = 0; i < jml_akun; i++) {
+//	        fscanf(file, "%s %s", akun[i].username, akun[i].password);
+//	    }
+//	    fclose(file);
+//	
+//	    char username[50];
+//	    char password[50];
+//	
+//		system ("cls");
+//	    printf("Silakan masukkan username dan password\n");
+//	
+//	    printf("Username: ");
+//	    scanf("%s", username);
+//	    printf("Password: ");
+//	    scanf("%s", password);
+//	
+//	    int kasir = cek_akun(akun, jml_akun, username, password);
+//	    if (kasir != -1) {
+//	        printf("Log in berhasil. Selamat datang, %s.\n", akun[kasir].username);
+//	        system ("cls");
+//	        MenuAdmin();
+//	    } else {
+//	        printf("Log in gagal. Username atau password salah.\n");
+//	    }
+//}
+//void Transaksi (){	
+//}
+//
+//
+//
+//
+//int MenuAdmin() {
+//
+//    int n = 0, infal, pilih;
+//    do {
+//        menu:
+//        infal = 0;
+//        n = ReadProduct(); 
+//        printf("\nPilihan : ");
+//        printf("\n1.Tambah Produk\n2.Hapus Produk\n0.Keluar");
+//        printf("\nPilih : ");
+//        scanf("%d", &pilih); 
+//        switch (pilih) {
+//            case 1 : { 
+//                AddBarang(n);
+//                goto menu;
+//                break;
+//            }
+//            case 2 : { 
+//                DeleteProduct(n);
+//                goto menu;
+//                break;
+//            }
+////            case 3 : {
+////            	goto menu;
+////				break;
+////			}
+//        }
+//    } while (pilih != 0);
+//
+//    return 0;
+//}
+//int ReadProduct(){
+//	FILE *file;
+//	int a=0;
+//	int ch;
+//	char *lis = "list_barang.txt";
+//	ListBrng brg;
+//	
+////	file = fopen("list_barang.txt", "r");
+//	// 
+//	if ( (file = fopen(lis,"r"))== NULL )
+//	{
+//		printf("File tidak dapat dibuka!\r\n");
+//	}
+//	
+///*Menampilkan List barang*/
+//	printf("---------------------------------------------\n");
+//	printf("No\tNama Produk\t\tHarga\tStok\n");
+//	printf("---------------------------------------------\n");
+//	while (fscanf(file,"%d;%[^;];%d;%d\n", &brg[a].no, &brg[a].NmBrng, &brg[a].HrgBrng, &brg[a].StokBrng) != EOF)
+//	{
+//		printf("%d\t%-20s\t%d\t%d\n", brg[a].no, brg[a].NmBrng, brg[a].HrgBrng, brg[a].StokBrng);
+//		a++;
+//	}	
+//	fclose(file);
+//	
+//	printf("\njumlah jenis produk : %d",a);	
+//	return a;
+//}
+//void AddBarang(int b){
+//	FILE *file;
+//	char *dir = "list_barang.txt";
+//	ListBrng brg;
+//
+//	if ( (file = fopen(dir,"a")) == NULL )
+//	{
+//		printf("File tidak dapat dibuka!\r\n");
+//		exit(1);
+//	}
+//		
+//	system("cls");
+//	printf("\n");
+//		
+//	brg[b].no = b;
+//	printf("Nama Produk\t: "); 
+//	fflush(stdin);
+//	scanf("%[^\n]", &brg[b].NmBrng);
+//	printf("Harga Produk\t: "); 
+//	scanf("%d", &brg[b].HrgBrng);
+//	printf("Stok Produk\t: " ); 
+//	scanf("%d", &brg[b].StokBrng);
+//		
+//	fprintf(file, "\n%d;%s;%d;%d", brg[b].no, brg[b].NmBrng, brg[b].HrgBrng, brg[b].StokBrng);
+//	fclose(file);
+//}
+//void DeleteProduct(int b){
+//	FILE *file, *fl;
+//	char *dir = "list_barang.txt";
+//	ListBrng brg;
+//	int id, x=0, y=0, z;
+//	char confirm, confirm2;
+//	
+//	ulang :
+//	system("cls");
+//	printf("\n");
+//	printf("Masukkan nomor produk yang akan dihapus : "); scanf("%d",&id);
+//	if (id < 0 || id > b){
+//		goto ulang;
+//	}
+//	else{
+//		fl = fopen(dir,"r");
+//		do{
+//			fscanf(fl,"%d;%[^;];%d;%d\n", &brg[y].no, &brg[y].NmBrng, &brg[y].HrgBrng, &brg[y].StokBrng);
+//			y++;
+//		}
+//		while(!feof(fl));
+//		fclose(fl);
+//		
+//		printf("-----------------------------------------\n");
+//		printf("No\tNama Produk\t\tHarga\tStok\n");
+//		printf("%d\t%-20s\t%d\t%d\n", brg[id].no, brg[id].NmBrng, brg[id].HrgBrng, brg[id].StokBrng);
+//		printf("-----------------------------------------\n");
+//		printf("Anda yakin ingin menghapus produk (%d. %s) ? y/t ",brg[id].no, brg[id].NmBrng);
+//		fflush(stdin);
+//		scanf("%c",&confirm);
+//		confirm2 = toupper(confirm);
+//				
+//		if(confirm2 == 'Y'){
+//			for (z=id; z<b; z++){
+//				brg[z].NmBrng, brg[z+1].NmBrng;
+//				brg[z].HrgBrng = brg[z+1].HrgBrng;
+//				brg[z].StokBrng = brg[z+1].StokBrng;
+//			}
+//					
+//			b--;
+//			file = fopen(dir,"w");
+//			do{
+//				fprintf(file, "%d;%s;%d;%d", brg[x].no, brg[x].NmBrng, brg[x].HrgBrng, brg[x].StokBrng);
+//				x++;
+//				if(x<b){
+//					fprintf(file,"\n");
+//				}
+//			}	
+//			while(x<b);
+//			fclose(file);
+//		}
+//	}
+//}

@@ -1,132 +1,124 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include"queue.h"
-// Fungsi untuk memeriksa apakah username dan password sesuai dengan akun yang terdaftar
-int cek_akun(Login_Kasir *akun, int jml_akun, char *username, char *password) {
-    int i;
-	for (i = 0; i < jml_akun; i++) {
-        if (strcmp(akun[i].username, username) == 0 && strcmp(akun[i].password, password) == 0) {
-            return i; // username dan password sesuai
-        }
-    }
-    return -1; // username dan password tidak sesuai
-}
-void Login_Admin(){
-	int jml_akun = 3;
-	    Login_Kasir akun[jml_akun];
+
+// List Pelanggan
+
+void CreateEmpty_Pelanggan(Queue_P *Q){
 	
-	    FILE *file;
-	    file = fopen("Admin.txt", "r");
+	*Q = NULL;
 	
-	    if (file == NULL) {
-	        printf("File tidak dapat dibuka\n");
-	        exit(1);
-	    }
-	
-	    for (int i = 0; i < jml_akun; i++) {
-	        fscanf(file, "%s %s", akun[i].username, akun[i].password);
-	    }
-	    fclose(file);
-	
-	    char username[50];
-	    char password[50];
-	
-		system ("cls");
-	    printf("Silakan masukkan username dan password\n");
-	
-	    printf("Username: ");
-	    scanf("%s", username);
-	    printf("Password: ");
-	    scanf("%s", password);
-	
-	    int kasir = cek_akun(akun, jml_akun, username, password);
-	    if (kasir != -1) {
-	        printf("Log in berhasil. Selamat datang, %s.\n", akun[kasir].username);
-	        system ("cls");
-	        //MenuAdmin();
-	    } else {
-	        printf("Log in gagal. Username atau password salah.\n");
-	    }
 }
 
+boolean IsEmpty_Pelanggan(Queue_P Q){
+	
+	return(isEmpty_Pelanggan(Q));
+	
+}
 
-void Enqueue_Pembeli(Queue_P *Q, Queue_BB *P, infochar Y, infotype Z){ // check
+void Enqueue_Pelanggan(Queue_P *Q, Queue_K *K, infotype X, infotype2 Y, infotype Z){
 	
 	address_P a = NULL;
-	address_BB b = NULL;
+	address_K b = NULL;
 	
-	Create_Node_Pembeli(&a);
-	Create_Node_BarangBelian(&b);
-	Isi_Node_Pembeli(&a, &b, Y, Z);
-	Ins_Akhir_Pembeli(&(*Q),a);
-	
-}
-
-//void Dequeue_Pembeli(Queue_P *Q,infochar *X){
-//	
-//	Del_Awal_Pembeli(&(*Q),&(*X));
-//	
-//}
-
-// List BarangBelian
-
-//void CreateEmpty_BarangBelian(Queue_BB *Q){	// gakepake
-//	
-//	*Q = NULL;
-//	
-//}
-
-//boolean IsEmpty_BarangBelian(Queue_BB Q){		// gakepake
-//		
-//	return(isEmpty_BarangBelian(Q));
-//	
-//}
-
-void Enqueue_BarangBelian(Queue_BB *Q,infotype X, infochar Y, infotype Z){	// check
-	
-	address_BB a = NULL;
-	
-	Create_Node_BarangBelian(&a);
-	Isi_Node_BarangBelian(&a, X, Y, Z);
-	Ins_Akhir_BarangBelian(&(*Q),a);
+	Create_Node_Pelanggan(&a);
+	Create_Node_Keranjang(&b);
+	Isi_Node_Pelanggan(&a, &b, X, Y, Z);
+	Ins_Akhir_Pelanggan(&(*Q),a);
 	
 }
 
-//void Dequeue_BarangBelian(Queue_BB *Q,infochar *X){	// gakepake
-//	
-//	Del_Awal_BarangBelian(&(*Q),&(*X));
-//	
-//}
+void Dequeue_Pelanggan(Queue_P *Q,infotype2 *X){
+	
+	Del_Awal_Pelanggan(&(*Q),&(*X));
+	
+}
+
+// List Barang
+
+void CreateEmpty_Barang(Queue_B *Q){
+	
+	*Q = NULL;
+	
+}
+
+boolean IsEmpty_Barang(Queue_B Q){
+	
+	return(isEmpty_Barang(Q));
+	
+}
+
+void Enqueue_Barang(Queue_B *Q,infotype X, infotype2 Y){
+	
+	address_B a = NULL;
+	
+	Create_Node_Barang(&a);
+	Isi_Node_Barang(&a, X, Y);
+	Ins_Akhir_Barang(&(*Q),a);
+	
+}
+
+void Dequeue_Barang(Queue_B *Q,infotype2 *X){
+	
+	Del_Awal_Barang(&(*Q),&(*X));
+	
+}
+
+// List Keranjang
+
+void CreateEmpty_Keranjang(Queue_K *Q){
+	
+	*Q = NULL;
+	
+}
+
+boolean IsEmpty_Keranjang(Queue_K Q){
+	
+	return(isEmpty_Keranjang(Q));
+	
+}
+
+void Enqueue_Keranjang(Queue_K *Q,infotype X, infotype2 Y, infotype Z){
+	
+	address_K a = NULL;
+	
+	Create_Node_Keranjang(&a);
+	Isi_Node_Keranjang(&a, X, Y, Z);
+	Ins_Akhir_Keranjang(&(*Q),a);
+	
+}
+
+void Dequeue_Keranjang(Queue_K *Q,infotype2 *X){
+	
+	Del_Awal_Keranjang(&(*Q),&(*X));
+	
+}
 
 // List Antrian
 
 
-//void CreateEmpty_Antrian(Queue_A *Q){	// gakepake
-//	
-//	*Q = NULL;
-//	
-//}
-
-//boolean IsEmpty_Antrian(Queue_A Q){	// gakepake
-//	
-//	return(isEmpty_Antrian(Q));
-//	
-//}
-
-//void Enqueue_Antrian(Queue_A *Q,infochar X,infotype Z){	// gakepake
-//	
-//	address_A a = NULL;
-//	
-//	Create_Node_Antrian(&a);
-//	Isi_Node_Antrian(&a, X);
-//	Ins_Akhir_Antrian(&(*Q),a);
-//	
-//}
-
-void Dequeue_Antrian(Queue_A *Q,infochar *X){	// memberikan nomor antrian dan nama di antrian
+void CreateEmpty_Antrian(Queue_A *Q){
 	
-	Del_Awal_Antrian(&(*Q),&(*X));	// Q disini bertipe address A, dan X passing parameter by address
+	*Q = NULL;
 	
 }
 
+boolean IsEmpty_Antrian(Queue_A Q){
+	
+	return(isEmpty_Antrian(Q));
+	
+}
+
+void Enqueue_Antrian(Queue_A *Q,infotype2 X,infotype Z){
+	
+	address_A a = NULL;
+	
+	Create_Node_Antrian(&a);
+	Isi_Node_Antrian(&a, X);
+	Ins_Akhir_Antrian(&(*Q),a);
+	
+}
+
+void Dequeue_Antrian(Queue_A *Q,infotype2 *X){
+	
+	Del_Awal_Antrian(&(*Q),&(*X));
+	
+}
