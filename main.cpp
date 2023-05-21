@@ -135,6 +135,7 @@ main(){
 								case 99:
 									printf("\t\t\t\tMasukan Nomor Kasir : ");
 									scanf("%d",&nomor);
+									Pelanggan->Nmr_ksr = nomor;
 									Antrian = NULL;
 									
 									Create_Node_Antrian(&Antrian);
@@ -142,6 +143,7 @@ main(){
 									Ins_Akhir_Antrian(&A[nomor-1].p,Antrian);
 									printf ("\n\t\t\t\tHoree!! Anda sudah masuk antrian. (klik untuk kembali)");
 									getch();
+									menu_pelanggan = true;
 									
 								break;
 								case 1:
