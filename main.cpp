@@ -14,7 +14,7 @@ main(){
 	address_B Barang;
 	address_K Keranjang;
 	address_A Antrian;
-	int pil,pilsub1,pilsub2,nomor, lagi,kode,jml,nokasir,harga,Nomor,i=0;;
+	int pil,pilsub1,pilsub2,nomor, lagi,kode,jml,nokasir,harga,Nomor,i=0, k;
 	infotype dompet=125000, nmr_ksr = NULL, Qty;
 	infotype2 nama,Nama_Barang,riwayat;
 	bool back_1 = false, back_mn = false, menu_pelanggan = false, menu_kasir = false, menu_admin = false;
@@ -85,7 +85,8 @@ main(){
 					switch(pilsub1){
 						case 1:
 							if(IsEmpty_Pelanggan(Head_Pelanggan)){
-								printf("\t\t\t\tPelanggan Kosong");
+								printf("\t\t\t\tPelanggan Kosong\n\t\t\t\tTambahkan pelanggan terlebih dahulu\n");
+								system("pause");
 								back_1 = true;
 							}else{
 								printf("\t\t\t\tList Pelanggan : \n");
@@ -221,6 +222,12 @@ main(){
 	   		 do {
 		        back_1 = false;
 		        system("cls");
+		        //menampilkan antrian 
+				for(k==0 ; k<3; k++){
+		        	printf("\t\t\t\tList Antrian : \n");
+	        	    Tampil_List_Antrian(A[k].p);
+	        	  //  getch();    
+				}
 		       	printf("\t\t\t\t[MENU KASIR]                                           \n");
 				printf("\t\t\t\t-------------------------------------------------------\n");
 				printf("\t\t\t\t||                                                    ||\n");
@@ -244,30 +251,24 @@ main(){
 				printf("\t\t\t\t-------------------------------------------------------\n");
 				printf("\t\t\t\t No Kasir : %d                                         \n",A[nomor].no_kasir);
 				printf("\t\t\t\t-------------------------------------------------------\n");	            
-	            printf("\t\t\t\t|| 1. Lihat Antrian                                  ||\n");
-				printf("\t\t\t\t|| 2. Proses Antrian Pertama                         ||\n");					
-				printf("\t\t\t\t|| 3. Kembali ke Menu Kasir                          ||\n");	
-				printf("\t\t\t\t|| 4. Kembali ke Menu Utama                          ||\n");
+				printf("\t\t\t\t|| 1. Proses Antrian Pertama                         ||\n");					
+				printf("\t\t\t\t|| 2. Kembali ke Menu Kasir                          ||\n");	
+				printf("\t\t\t\t|| 3. Kembali ke Menu Utama                          ||\n");
 				printf("\t\t\t\t-------------------------------------------------------\n");
 
 	            printf("\t\t\t\tInput Pilihan : ");
 	            scanf("%d", &pil);
 	            switch(pil) {
 	                case 1:
-	                    printf("\t\t\t\tList Antrian : \n");
-	                    Tampil_List_Antrian(A[nomor].p);
-	                    getch();
-	                    break;
-	                case 2:
 	                    Del_Awal_Antrian(&A[nomor].p, &riwayat);
 	                    printf("\t\t\t\tMenghapus Antrian : %s", &riwayat);
 	                    printf("\n\t\t\t\tAntrian berhasil diproses. (klik untuk pilih antrian berikutnya)");
 	                    getch();
 	                    break;
-	                case 3:
+	                case 2:
 	                    menu_kasir = true;
 	                    break;
-	                case 4:
+	                case 3:
 	                    menu_kasir = true;
 	                    back_1 = true;
 	                    break;
