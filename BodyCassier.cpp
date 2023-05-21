@@ -96,8 +96,12 @@ int MenuAdmin() {
             case 3 : {
             	UpdateBrng(n);
             	goto menu;
-				break;
-			}
+		break;
+	    }
+	    case 4 : {
+		    exit(0);
+	    }
+		
         }
     } while (pilih != 0);
     //system("cls);
