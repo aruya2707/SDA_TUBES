@@ -40,11 +40,11 @@ void Isi_Node_Pelanggan (address_P *p , address_K *k, infotype dompet, infotype2
 void Tampil_List_Pelanggan (address_P p){
 	int i = 1;
 	if(isEmpty_Pelanggan(p)){
-		printf("List Kosong\n");
+		printf("\t\t\t\tList Kosong\n");
 	}
 	else{		
 		while(!isEmpty_Pelanggan(p)){
-			printf("%d. Nama = %s \n\tDompet = Rp.%d \n\tNomor Kasir = %d",i,&p->Nm_pelanggan, p->Dompet, p->Nmr_ksr);
+			printf("\t\t\t\t%d. Nama = %s \n\t\t\t\t   Nomor Kasir = %d",i,&p->Nm_pelanggan, p->Nmr_ksr);
 			p = next(p);
 			if(p != Nil){
 				printf("\n");
@@ -318,11 +318,12 @@ void Isi_Node_Keranjang (address_K *p , infotype harga, infotype2 nm_brg, infoty
 void Tampil_List_Keranjang (address_K p){
 	int i = 1;
 	if(isEmpty_Keranjang(p)){
-		printf("List Kosong\n");
+		printf("\t\t\t\tList Kosong, Silahkan klik lagi...                   \n");
+		printf("\t\t\t\t-------------------------------------------------------\n");
 	}
 	else{		
 		while(!isEmpty_Keranjang(p)){
-			printf("%d. %s Rp.%d %d buah",i,p->NmBrng, p->HrgBrng, p->Qty);
+			printf("\t\t\t\t%d. %s Rp.%d %d buah",i,p->NmBrng, p->HrgBrng, p->Qty);
 			p = next(p);
 			if(p != Nil){
 				printf("\n");
@@ -446,11 +447,11 @@ void Isi_Node_Antrian (address_A *p , infotype2 nama){
 void Tampil_List_Antrian (address_A p){
 	int i = 1;
 	if(isEmpty_Antrian(p)){
-		printf("List Kosong\n");
+		printf("\t\t\t\tList Kosong\n");
 	}
 	else{		
 		while(!isEmpty_Antrian(p)){
-			printf("%d. %s",i,&p->nama);
+			printf("\t\t\t\t%d. %s",i,&p->nama);
 			p = next(p);
 			if(p != Nil){
 				printf("\n");

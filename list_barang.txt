@@ -1,10 +1,10 @@
-0;Buku;2500;48
-1;Tas;60000;58
-2;Payung;15000;17
-3;Pensil;3000;80
-4;Akua;6000;43
-5;Jelly;3000;42
-6;Lampu Neon;10000;45
-7;Antangin;3000;18
-8;Sariwangi;10000;20
-9;Kecap Asin;3000;42
+				0;Buku Tulis;3800;60
+				1;Tas;60000;54
+				2;Payung;6000;100
+				3;Pensil;10000;34
+				4;Aqua;3000;10
+				5;Jelly;10000;20
+				6;Lampu Neon;3000;42
+				7;Antangin;7000;20
+				8;Sariwangi;5000;50
+				9;Kecap Asin;8000;40

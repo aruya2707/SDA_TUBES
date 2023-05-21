@@ -29,7 +29,7 @@ void Login_Admin(){
 	    file = fopen("Admin.txt", "r");
 	
 	    if (file == NULL) {
-	        printf("File tidak dapat dibuka\n");
+	        printf("\t\t\t\tFile tidak dapat dibuka\n");
 	        exit(1);
 	    }
 	
@@ -42,20 +42,23 @@ void Login_Admin(){
 	    char password[50];
 	
 		system ("cls");
-	    printf("Silakan masukkan username dan password\n");
-	
-	    printf("Username: ");
+		printf("\t\t\t\t[MENU GUDANG]                                          \n");
+		printf("\t\t\t\t-------------------------------------------------------\n");
+		printf("\t\t\t\t||Silahkan Masukan Username dan Password Admin Gudang||\n");
+		printf("\t\t\t\t-------------------------------------------------------\n");	            
+	    printf("\t\t\t\tUsername: ");
 	    scanf("%s", username);
-	    printf("Password: ");
+	    printf("\t\t\t\tPassword: ");
 	    scanf("%s", password);
-	
+		printf("\t\t\t\t-------------------------------------------------------\n");
+		
 	    int kasir = cek_akun(akun, jml_akun, username, password);
 	    if (kasir != -1) {
-	        printf("Log in berhasil. Selamat datang, %s.\n", akun[kasir].username);
+	        printf("\t\t\t\tLog in berhasil. Selamat datang, %s.\n", akun[kasir].username);
 	        system ("cls");
 	        MenuAdmin();
 	    } else {
-	        printf("Log in gagal. Username atau password salah.\n");
+	        printf("\t\t\t\tLog in gagal. Username atau password salah. (klik untuk login ulang)\n");
 	    }
 }
 
@@ -68,12 +71,16 @@ int MenuAdmin() {
     do {
         menu:
         infal = 0;
+        printf("\t\t\t\t[MENU GUDANG]                                          \n");
+        printf("\t\t\t\t-------------------------------------------------------\n");
         n = ReadProduct(); 
-        printf("\n----------------");
-        printf("\nPilihan ");
-        printf("\n----------------");
-        printf("\n1.Tambah Barang\n2.Hapus Barang\n3.Edit Barang\n0.Keluar\n");
-        printf("\nPilih : ");
+		printf("\n\t\t\t\t-------------------------------------------------------\n");	            
+	    printf("\t\t\t\t|| 1. Tambah Barang                                  ||\n");
+		printf("\t\t\t\t|| 2. Hapus Barang                                   ||\n");					
+		printf("\t\t\t\t|| 3. Edit Barang                                    ||\n");	
+		printf("\t\t\t\t|| 4. Kembali                                        ||\n");
+		printf("\t\t\t\t-------------------------------------------------------\n");
+        printf("\n\t\t\t\tInputkan Pilihan : ");
         scanf("%d", &pilih); 
         switch (pilih) {
             case 1 : { 
@@ -109,21 +116,21 @@ int ReadProduct(){
 	// 
 	if ( (file = fopen(lis,"r"))== NULL )
 	{
-		printf("File tidak dapat dibuka!\r\n");
+		printf("\t\t\t\tFile tidak dapat dibuka!\r\n");
 	}
 	
 /*Menampilkan List barang*/
-	printf("---------------------------------------------\n");
-	printf("No\tNama Barang\t\tHarga\tStok\n");
-	printf("---------------------------------------------\n");
-	while (fscanf(file,"%d;%[^;];%d;%d\n", &brg[a].no, &brg[a].NmBrng, &brg[a].HrgBrng, &brg[a].StokBrng) != EOF)
+//	printf("---------------------------------------------\n");
+	printf("\t\t\t\tNo\tNama Barang\t\t\tHarga\tStok\n");
+	printf("\t\t\t\t-------------------------------------------------------\n");
+	while (fscanf(file,"\t\t\t\t%d;%[^;];%d;%d\n", &brg[a].no, &brg[a].NmBrng, &brg[a].HrgBrng, &brg[a].StokBrng) != EOF)
 	{
-		printf("%d\t%-20s\t%d\t%d\n", brg[a].no, brg[a].NmBrng, brg[a].HrgBrng, brg[a].StokBrng);
+		printf("\t\t\t\t%d\t%-20s\t\t%d\t%d\n", brg[a].no, brg[a].NmBrng, brg[a].HrgBrng, brg[a].StokBrng);
 		a++;
 	}	
 	fclose(file);
 	
-	printf("\njumlah jenis produk : %d",a);	
+	printf("\n\t\t\t\tjumlah jenis produk : %d",a);	
 	return a;
 }
 
@@ -134,7 +141,7 @@ void AddBarang(int b) {
 	ListBrng brg;
 
 	if ((file = fopen(dir, "a")) == NULL) {
-		printf("File tidak dapat dibuka!\r\n");
+		printf("\t\t\t\tFile tidak dapat dibuka!\r\n");
 		exit(1);
 	}
 
@@ -142,23 +149,25 @@ void AddBarang(int b) {
 	printf("\n");
 
 	brg[b].no = b;
-	printf("Nama Produk\t: ");
+	printf("\t\t\t\t[TAMBAH BARANG]                                        \n");
+    printf("\t\t\t\t-------------------------------------------------------\n");
+	printf("\t\t\t\tNama Produk\t: ");
 	fflush(stdin);
 	scanf("%[^\n]", &brg[b].NmBrng);
-	printf("Harga Produk\t: ");
+	printf("\t\t\t\tHarga Produk\t: ");
 	scanf("%d", &brg[b].HrgBrng);	
 	do {
-		printf("Stok Produk\t: ");
+		printf("\t\t\t\tStok Produk\t: ");
 		scanf("%d", &stok);
 
 		if (stok < 0) {
-			printf("Input stok tidak valid. Harap masukkan angka yang lebih besar dari atau sama dengan nol!\n");
+			printf("\t\t\t\tInput stok tidak valid. Harap masukkan angka yang lebih besar dari atau sama dengan nol!\n");
 		}
 	} while (stok < 0);
 
 	brg[b].StokBrng = stok;
 
-	fprintf(file, "\n%d;%s;%d;%d", brg[b].no, brg[b].NmBrng, brg[b].HrgBrng, brg[b].StokBrng);
+	fprintf(file, "\n\t\t\t\t%d;%s;%d;%d", brg[b].no, brg[b].NmBrng, brg[b].HrgBrng, brg[b].StokBrng);
 	fclose(file);
 	system("cls");
 }
@@ -173,7 +182,9 @@ void DeleteProduct(int b){
 	ulang :
 	system("cls");
 	printf("\n");
-	printf("Masukkan nomor produk yang akan dihapus : "); scanf("%d",&id);
+	printf("\t\t\t\t[HAPUS BARANG]                                         \n");
+	printf("\t\t\t\t-------------------------------------------------------\n");
+	printf("\t\t\t\tMasukkan nomor produk yang akan dihapus : "); scanf("%d",&id);
 	if (id < 0 || id > b){
 		goto ulang;
 	}
@@ -186,11 +197,11 @@ void DeleteProduct(int b){
 		while(!feof(fl));
 		fclose(fl);
 		
-		printf("-----------------------------------------\n");
-		printf("No\tNama Barang\t\tHarga\tStok\n");
-		printf("%d\t%-20s\t%d\t%d\n", brg[id].no, brg[id].NmBrng, brg[id].HrgBrng, brg[id].StokBrng);
-		printf("-----------------------------------------\n");
-		printf("Anda yakin ingin menghapus produk (%d. %s) ? y/t ",brg[id].no, brg[id].NmBrng);
+		printf("\t\t\t\t-------------------------------------------------------\n");
+		printf("\t\t\t\tNo\tNama Barang\t\t\tHarga\tStok\n");
+		printf("\t\t\t\t%d\t%-20s\t\t%d\t%d\n", brg[id].no, brg[id].NmBrng, brg[id].HrgBrng, brg[id].StokBrng);
+		printf("\t\t\t\t-------------------------------------------------------\n");
+		printf("\t\t\t\tAnda yakin ingin menghapus produk (%d. %s) ? y/t ",brg[id].no, brg[id].NmBrng);
 		fflush(stdin);
 		scanf("%c",&confirm);
 		confirm2 = toupper(confirm);
@@ -228,24 +239,26 @@ void UpdateBrng(int b) {
 	printf("\n");
 
 	do { // Repeat if input is invalid
-		printf("Masukkan nomor produk yang akan diubah: ");
+		printf("\t\t\t\t[EDIT BARANG]                                          \n");
+        printf("\t\t\t\t-------------------------------------------------------\n");
+		printf("\t\t\t\tMasukkan nomor produk yang akan diubah: ");
 		scanf("%d", &id);
 		for (c = 0; c <= id; c++) {
 			if (id == brg[c].no) {
-				printf("-----------------------------------------\n");
-				printf("No\tNama Barang\t\tHarga\tJumlah\n");
-				printf("%d\t%-20s\t%d\t%d\n", brg[c].no, brg[c].NmBrng, brg[c].HrgBrng, brg[c].StokBrng);
-				printf("-----------------------------------------\n");
-				printf("Nama Barang yang Baru\t: ");
+				printf("\t\t\t\t-------------------------------------------------------\n");
+				printf("\t\t\t\tNo\tNama Barang\t\t\tHarga\tJumlah\n");
+				printf("\t\t\t\t%d\t%-20s\t\t%d\t%d\n", brg[c].no, brg[c].NmBrng, brg[c].HrgBrng, brg[c].StokBrng);
+				printf("\t\t\t\t-------------------------------------------------------\n");
+				printf("\t\t\t\tNama Barang yang Baru\t: ");
 				fflush(stdin);
 				scanf("%[^\n]", &brg[c].NmBrng);
-				printf("Harga Barang yang Baru\t: ");
+				printf("\t\t\t\tHarga Barang yang Baru\t: ");
 				scanf("%d", &brg[c].HrgBrng);
 				do {
-					printf("Stok Barang yang Baru\t: ");
+					printf("\t\t\t\tStok Barang yang Baru\t: ");
 					scanf("%d", &stok);
 					if (stok < 0) {
-						printf("Input stok tidak valid. Silakan masukkan nilai stok yang lebih besar dari 0.\n");
+						printf("\t\t\t\tInput stok tidak valid. Silakan masukkan nilai stok yang lebih besar dari 0.\n");
 					}
 				} while (stok < 0);
 				brg[c].StokBrng = stok;
@@ -264,5 +277,48 @@ void UpdateBrng(int b) {
 			else continue;
 		}
 	} while (id < 0 && id > b);
+}
+
+// Prosedur dari referensi internet untuk menentukan posisi 
+void gotoxy(int x, int y){
+	HANDLE hConsoleOutput;  
+	COORD dwCursorPosition;  
+	dwCursorPosition.X = x;  
+	dwCursorPosition.Y = y;  
+	hConsoleOutput = GetStdHandle(STD_OUTPUT_HANDLE);  
+	SetConsoleCursorPosition(hConsoleOutput,dwCursorPosition);   
+}
+
+// Menampilkan judul kalkulator
+void tampilan(){
+int i;
+system("cls");
+i=1;
+gotoxy(5,1);printf("##================================[ S E L A M A T   D A T A N G ]=================================##");
+gotoxy(5,3);printf("##================================              D I              =================================##");
+while (i<=10){
+	gotoxy(5,4);	printf("||");																	gotoxy(110,4);	printf("||");
+	gotoxy(5,5);	printf("||");																	gotoxy(110,5);	printf("||");
+	gotoxy(5,6);	printf("||");																	gotoxy(110,6);	printf("||");
+	gotoxy(5,7);	printf("||");																	gotoxy(110,7);	printf("||");
+	gotoxy(5,8);	printf("||");																	gotoxy(110,8);	printf("||");
+	gotoxy(5,9);	printf("||");																	gotoxy(110,9);	printf("||");
+	gotoxy(5,10);	printf("||");																	gotoxy(110,10);	printf("||");
+	gotoxy(5,11);	printf("||");																	gotoxy(110,11);	printf("||");
+	
+	
+	
+	
+	
+	gotoxy(i,5);	printf("\t\t    *#*    ##         *#*    *#     #*    *#*    *######*  *######*  \n");
+	gotoxy(19-i,6);	printf("\t\t   #   #   ##        #   #   ###   ###   #   #   ##     #     ##     \n");
+	gotoxy(i-1,7);	printf("\t\t  #     #  ##       #     #  ## # # ##  #     #  #######*     ##     \n");
+	gotoxy(19-i,8);	printf("\t\t  #######  ##       #######  ##  *  ##  #######  ##*##        ##     \n");
+	gotoxy(i-1,9);	printf("\t\t  ##   ##  ##       ##   ##  ##     ##  ##   ##  ##   #       ##     \n");
+	gotoxy(19-i,10);printf("\t\t  ##   ##  #######  ##   ##  ##     ##  ##   ##  ##    #      ##     \n");
+	Sleep(300);
+	i++;
+	}
+gotoxy(5,12);printf("##=========================== S E L A M A T  B E R B E L A N J A ====================================##");
 }
 

@@ -13,6 +13,7 @@
 #include "boolean.h"
 #include <ctype.h>
 #include <string.h>
+#include <windows.h>
 
 #define nama(P) (P)->nama
 #define Keranjang(P) (P)->Keranjang
@@ -83,6 +84,11 @@ int MenuAdmin();
 void Login_Admin();
 
 int cek_akun(Login_Kasir *akun, int jml_akun, char *username, char *password);
+
+//Tampilan
+void gotoxy(int x, int y);
+
+void tampilan();
 
 // List Pelanggan
 
