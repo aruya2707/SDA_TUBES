@@ -71,6 +71,8 @@ typedef struct ListBarang{
 	address_B next;
 }ListBrng[100];
 
+int main();
+
 int ReadProduct();
 
 void AddBarang(int b);
