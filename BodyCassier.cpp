@@ -93,15 +93,15 @@ int MenuAdmin() {
                 goto menu;
                 break;
             }
-            case 3 : {
+             case 3 : {
             	UpdateBrng(n);
             	goto menu;
-		break;
-	    }
-	    case 4 : {
-		    exit(0);
-	    }
-		
+				break;
+			}
+			case 4 : {
+				main();
+				break;
+			}
         }
     } while (pilih != 0);
     //system("cls);
