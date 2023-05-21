@@ -1,0 +1,10 @@
+0;Buku;2500;48
+1;Tas;60000;58
+2;Payung;15000;17
+3;Pensil;3000;80
+4;Akua;6000;43
+5;Jelly;3000;42
+6;Lampu Neon;10000;45
+7;Antangin;3000;18
+8;Sariwangi;10000;20
+9;Kecap Asin;3000;42
