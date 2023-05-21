@@ -125,10 +125,9 @@ main(){
 							if(!IsEmpty_Keranjang(Head_Keranjang)){
 								printf("\t\t\t\t|| 99. Masuk Antrian                                 ||\n");
 							}
-							printf("\t\t\t\t|| 1. Tambah Barang                                  ||\n");
-							printf("\t\t\t\t|| 2. Lihat Dompet                                   ||\n");					
-							printf("\t\t\t\t|| 3. Lihat Keranjang                                ||\n");	
-							printf("\t\t\t\t|| 4. Kembali                                        ||\n");
+							printf("\t\t\t\t|| 1. Tambah Barang                                  ||\n");				
+							printf("\t\t\t\t|| 2. Lihat Keranjang                                ||\n");	
+							printf("\t\t\t\t|| 3. Kembali                                        ||\n");
 							printf("\t\t\t\t-------------------------------------------------------\n");
 							printf("\t\t\t\tInput Pilihan:");
 							scanf("%d",&pilsub2);
@@ -203,16 +202,11 @@ main(){
 								    getch();
 
 								break;
-								case 2 :
-									printf("\n Isi pada dompet anda ada Rp.%d \n",Pelanggan->Dompet);
-									menu_pelanggan = false;
-									getch();
-								break;
-								case 3 :	
+								case 2 :	
 									Tampil_List_Keranjang(Head_Keranjang);
 									getch();
 								break;
-								case 4 :
+								case 3 :
 									menu_pelanggan = true;
 								break;
 							}
@@ -265,7 +259,7 @@ main(){
 	                case 2:
 	                    Del_Awal_Antrian(&A[nomor].p, &riwayat);
 	                    printf("\t\t\t\tMenghapus Antrian : %s", &riwayat);
-	                    printf("\nAntrian berhasil diproses. (klik untuk pilih antrian berikutnya)");
+	                    printf("\n\t\t\t\tAntrian berhasil diproses. (klik untuk pilih antrian berikutnya)");
 	                    getch();
 	                    break;
 	                case 3:
